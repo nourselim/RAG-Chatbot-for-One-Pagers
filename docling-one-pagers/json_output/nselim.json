@@ -1,0 +1,82 @@
+{
+  "name": "Nour Selim",
+  "title": "Backend Engineer",
+  "contact": {
+    "email": "nselim@deloitte.com"
+  },
+  "summary": "Experienced backend engineer with 4+ years of success designing and delivering fast, scalable, and reliable applications using Java (Spring Boot), Python, JavaScript, and PostgreSQL. Proven track record in leading backend architecture for AI-powered platforms and multi-tenant SaaS systems. Skilled in building robust APIs, implementing automation, and optimizing deployment workflows with Docker, Kubernetes, and GitLab CI/CD.",
+  "key_skills": {
+    "business": [
+      "Agile Methodology",
+      "Stakeholder communication",
+      "Collaboration & Teamwork"
+    ],
+    "technology": [
+      "Java (Spring Boot, Hibernate, JPA, Selenium)",
+      "Python (Flask)",
+      "JavaScript, NodeJS, Next.js",
+      "Junit, Mockito",
+      "SQL, Oracle, NoSQL",
+      "GIT",
+      "Docker, Kubernetes",
+      "AWS"
+    ],
+    "industry": [
+      "Procurement",
+      "Telecommunications",
+      "Digital Transformation",
+      "Governmental"
+    ]
+  },
+  "education": [
+    "Bachelor's degree, Computer Science, Misr International University in Egypt"
+  ],
+  "languages": [
+    "Arabic",
+    "English"
+  ],
+  "certifications": [
+    "Core Model Developer - Hyperexponential",
+    "Generative AI Associate Engineer - Databricks"
+  ],
+  "experience": [
+    {
+      "role": "Senior Backend Engineer",
+      "company": "Deloitte Innovation Hub – Procurement AIaaS",
+      "duration": "Mar 2025 – Present",
+      "achievements": [
+        "Led backend development for scalable procurement platform.",
+        "Designed &amp; implemented full stack with Node.js and Next.js.",
+        "Built secure, isolated data access, improved readiness through logging, monitoring, and QA.",
+        "Developed backend utilities and boosted engineering efficiency."
+      ]
+    },
+    {
+      "role": "Senior Backend Engineer",
+      "company": "Deloitte Innovation Hub – Agentic Workforce Transformation",
+      "duration": "Jan 2025 – Mar 2025",
+      "achievements": [
+        "Developed AI-powered workforce solutions.",
+        "Built pilots using Python &amp; Node.js, deployed on GCP.",
+        "Co-created playbook, guided tool adoption, and delivered pilot demonstrating applied AI."
+      ]
+    },
+    {
+      "role": "Software Engineer",
+      "company": "Orange Business",
+      "duration": "Jan 2023 – Oct 2024",
+      "achievements": [
+        "Designed &amp; maintained scalable systems.",
+        "Used Docker, Kubernetes, and GitLab CI/CD for deployments.",
+        "Developed automation testing frameworks and built data admin portal."
+      ]
+    }
+  ],
+  "clients": [
+    "Roche",
+    "Sanofi",
+    "Orange Business",
+    "Administrative Control Authority (Egypt)"
+  ],
+  "_debug_experience_source": "(experience from MD)"
+}

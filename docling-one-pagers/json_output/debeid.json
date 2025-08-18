@@ -1,0 +1,66 @@
+{
+  "name": "Daniel Ebeid",
+  "title": "Backend Engineer",
+  "contact": {
+    "email": "debeid@deloitte.com"
+  },
+  "summary": "Cloud and DevOps engineer with 5+ years of experience in building, automating, and scaling infrastructure for high-availability systems. Proven expertise in designing CI/CD pipelines, container orchestration, and cloud-native applications across AWS, Azure, and GCP. Skilled in improving developer productivity, reducing deployment times, and enhancing system reliability through automation and monitoring solutions.",
+  "key_skills": {
+    "business": [
+      "Project Planning & Execution",
+      "Stakeholder Engagement",
+      "Agile & Scrum"
+    ],
+    "technology": [
+      "Cloud: AWS, Azure, GCP",
+      "DevOps: Docker, Kubernetes, Terraform, Ansible",
+      "Programming: Python, Go,"
+    ],
+    "industry": [
+      "E-commerce",
+      "FinTech",
+      "Logistics & Supply Chain"
+    ]
+  },
+  "education": [
+    "Bachelor’s degree in Computer Engineering, Ain Shams University"
+  ],
+  "languages": [
+    "Arabic",
+    "English"
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect – Associate",
+    "Microsoft Certified: Azure Administrator",
+    "Kubernetes Certified Administrator (CKA)"
+  ],
+  "experience": [
+    {
+      "role": "DevOps Engineer",
+      "company": "CloudSphere Solutions",
+      "duration": "Apr 2023 – Present",
+      "achievements": [
+        "Built and optimized multi-cloud infrastructure (AWS + Azure) for enterprise clients.",
+        "Automated deployments with Terraform and Ansible, cutting manual effort by 60%.",
+        "Designed monitoring dashboards using Prometheus and Grafana.",
+        "Implemented CI/CD pipelines with GitHub Actions, reducing release cycle from 2 weeks to 3 days."
+      ]
+    },
+    {
+      "role": "System Administrator",
+      "company": "LogiTech Transport",
+      "duration": "Sep 2018 – Dec 2020",
+      "achievements": [
+        "Managed Linux-based servers and automated backup systems.",
+        "Introduced Docker-based containerization for internal apps.",
+        "Improved system reliability and reduced downtime by 30%."
+      ]
+    }
+  ],
+  "clients": [
+    "Amazon Egypt",
+    "Vodafone",
+    "Emirates Logistics"
+  ],
+  "_debug_experience_source": "(experience from Docling)"
+}
