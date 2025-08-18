@@ -54,16 +54,17 @@
         "achievements": [
           "Managed Linux-based servers and automated backup systems.",
           "Introduced Docker-based containerization for internal apps.",
-          "Improved system reliability and reduced downtime by 30%."
+          "Improved system reliability and reduced downtime by 30%.",
+          "Relevant Experience."
         ]
       }
     ],
     "clients": [
       "Amazon Egypt",
       "Vodafone",
-      "Emirates Logistics"
+      "Emirates Logistics <!-- image -->"
     ],
-    "_debug_experience_source": "(experience from Docling)"
+    "_debug_experience_source": "(experience from MD)"
   },
   {
     "name": "Lujain Mansour",
@@ -128,14 +129,16 @@
         "role": "Business Consultant",
         "company": "Delta Consulting Services",
         "duration": "Jan 2013 – Dec 2020",
-        "achievements": []
+        "achievements": [
+          "Relevant Experience."
+        ]
       }
     ],
     "clients": [
       "Vodafone",
       "Emaar Misr",
       "Travelstart Egypt",
-      "El Araby Group"
+      "El Araby Group <!-- image --> Lujain Mansour Frontend Engineer"
     ],
     "deloitte_title": "Consultant",
     "_debug_experience_source": "(experience from MD)"
@@ -210,7 +213,8 @@
         "achievements": [
           "Designed &amp; maintained scalable systems.",
           "Used Docker, Kubernetes, and GitLab CI/CD for deployments.",
-          "Developed automation testing frameworks and built data admin portal."
+          "Developed automation testing frameworks and built data admin portal.",
+          "Relevant Experience."
         ]
       }
     ],
@@ -232,6 +236,12 @@
     "education": [
       "Bachelor's degree, Computer Science, Ainshams University in Egypt"
     ],
+    "languages": [
+      "1- Arabic 2- English 3-spanish"
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect – Associate Microsoft Certified: Azure Developer Associate"
+    ],
     "experience": [
       {
         "role": "Senior Backend Engineer",
@@ -248,20 +258,31 @@
         "role": "Backend Engineer",
         "company": "CloudSphere – AI Automation Platform",
         "duration": "Jan 2024 – Mar 2025",
-        "achievements": []
+        "achievements": [
+          "Designed backend modules for an AI-driven automation suite.",
+          "Worked with Python FastAPI and Node.js for hybrid service development.",
+          "Deployed applications on AWS using Docker &amp; ECS.",
+          "Partnered with data science teams to productionize ML workflows."
+        ]
       },
       {
         "role": "Software Engineer",
         "company": "BrightEdge Solutions",
         "duration": "Feb 2022 – Dec 2023",
-        "achievements": []
+        "achievements": [
+          "Contributed to development of enterprise SaaS applications.",
+          "Built CI/CD pipelines with Jenkins and GitHub Actions.",
+          "Wrote unit &amp; integration tests to strengthen product reliability.",
+          "Collaborated with UI teams to deliver user-facing dashboards.",
+          "Relevant Experience."
+        ]
       }
     ],
     "clients": [
       "Roche",
       "Sanofi",
       "Orange Business",
-      "Administrative Control Authority (Egypt)"
+      "Administrative Control Authority (Egypt) <!-- image -->"
     ],
     "_debug_experience_source": "(experience from MD)"
   },
@@ -308,6 +329,9 @@
       "Microsoft Certified: Azure Administrator",
       "Kubernetes Certified Administrator (CKA)"
     ],
+    "clients": [
+      "Vodafone—- Emaar Misr—— Travelstart Egypt——-El Araby Group Seifeldin Saleh Backend Engineer <!-- image -->"
+    ],
     "experience": [
       {
         "role": "Management Consultant",
@@ -322,7 +346,8 @@
         "company": "Delta Consulting Services",
         "duration": "Jan 2013 – Dec 2020",
         "achievements": [
-          "Advised clients across retail, financial services, and government on growth strategies, restructuring, and market positioning."
+          "Advised clients across retail, financial services, and government on growth strategies, restructuring, and market positioning.",
+          "Relevant Experience."
         ]
       }
     ],

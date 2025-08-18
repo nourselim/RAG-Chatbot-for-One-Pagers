@@ -53,14 +53,15 @@
       "achievements": [
         "Managed Linux-based servers and automated backup systems.",
         "Introduced Docker-based containerization for internal apps.",
-        "Improved system reliability and reduced downtime by 30%."
+        "Improved system reliability and reduced downtime by 30%.",
+        "Relevant Experience."
       ]
     }
   ],
   "clients": [
     "Amazon Egypt",
     "Vodafone",
-    "Emirates Logistics"
+    "Emirates Logistics <!-- image -->"
   ],
-  "_debug_experience_source": "(experience from Docling)"
+  "_debug_experience_source": "(experience from MD)"
 }

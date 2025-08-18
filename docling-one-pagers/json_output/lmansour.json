@@ -61,14 +61,16 @@
       "role": "Business Consultant",
       "company": "Delta Consulting Services",
       "duration": "Jan 2013 – Dec 2020",
-      "achievements": []
+      "achievements": [
+        "Relevant Experience."
+      ]
     }
   ],
   "clients": [
     "Vodafone",
     "Emaar Misr",
     "Travelstart Egypt",
-    "El Araby Group"
+    "El Araby Group <!-- image --> Lujain Mansour Frontend Engineer"
   ],
   "deloitte_title": "Consultant",
   "_debug_experience_source": "(experience from MD)"

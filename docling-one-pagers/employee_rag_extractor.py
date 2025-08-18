@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Merged extractor: rich non-experience fields + airtight experience
@@ -13,8 +12,6 @@ Merged extractor: rich non-experience fields + airtight experience
 - Processes all *.[Pp][Pp][Tt][Xx], continues on errors
 - Exports docling markdown to out/debug/<name>.md for troubleshooting
 
-Run:
-  python script_merged.py INPUT_DIR --out json_output --raw_txt_dir path\\to\\txts
 """
 
 import re, os, json, shutil, argparse, logging, subprocess, html
@@ -73,6 +70,20 @@ def looks_like_duration(s: str) -> bool:
     if any(m in t for m in MONTHS): return True
     if re.search(r"\b(19|20)\d{2}\s*[–—-]\s*(19|20)\d{2}\b", t): return True
     return False
+
+# Strip simple markdown decorations (bold/italics/code/headers) so header regex works
+def strip_md_decor(line: str) -> str:
+    l = line.strip()
+    # strip leading md markers
+    l = re.sub(r"^[*_`>#]+", "", l)
+    # strip trailing markers
+    l = re.sub(r"[*_`]+$", "", l)
+    # unwrap **text** or __text__
+    if l.startswith("**") and l.endswith("**") and len(l) > 4:
+        l = l[2:-2].strip()
+    if l.startswith("__") and l.endswith("__") and len(l) > 4:
+        l = l[2:-2].strip()
+    return l.strip()
 
 # ----------------- Docling conversion -----------------
 def has_soffice() -> bool:
@@ -178,16 +189,15 @@ def sentences_to_items(text: str) -> List[str]:
     return [unescape(i) for i in items]
 
 def is_section_heading(line: str, current_section: Optional[str]) -> bool:
-    low = line.lower().strip(": ")
+    low = strip_md_decor(line).lower().strip(": ")
     if low in SECTION_ALIASES: return True
     if current_section == "experience": return False
-    if line.startswith(("#","##","###")): return True
-    if ("," not in line) and ("(" not in line) and (")" not in line) and len(line) <= 60:
-        if not BULLET_PREFIX_RE.match(line.strip()): return True
+    if line.lstrip().startswith(("#","##","###")): return True
+    # NOTE: removed "short line without punctuation" heuristic to avoid dropping achievements
     return False
 
 def normalize_heading(line: str) -> str:
-    h = line.lower().strip(": ")
+    h = strip_md_decor(line).lower().strip(": ")
     return SECTION_ALIASES.get(h, h)
 
 def extract_email(text: str) -> Optional[str]:
@@ -196,7 +206,7 @@ def extract_email(text: str) -> Optional[str]:
 
 def extract_name_and_title(lines: List[str], raw_first_line: Optional[str] = None) -> Tuple[str,str]:
     name=""; title=""
-    scan = [l.strip() for l in lines[:25] if l.strip()]
+    scan = [strip_md_decor(l.strip()) for l in lines[:25] if l.strip()]
     for idx,l in enumerate(scan):
         if _looks_like_person_name(l):
             name=l
@@ -220,7 +230,7 @@ def _is_job_header(line: str) -> Optional[Dict[str, str]]:
         re.compile(r"^(?P<role>[^,–—()]+?)[–—-]\s*(?P<company>[^()]+?)\s*\((?P<duration>[^)]+)\)\.?\s*$"),
         re.compile(r"^(?P<role>[^()]+?)\s+at\s+(?P<company>[^()]+?)\s*\((?P<duration>[^)]+)\)\.?\s*$", re.IGNORECASE),
     ]
-    s = line.strip()
+    s = strip_md_decor(line)
     for pat in JOB_HEADER_PATTERNS:
         m = pat.match(s)
         if m:
@@ -239,7 +249,7 @@ def consume_until_next_heading(lines: List[str], i: int, current_section: Option
         if is_section_heading(l, current_section): break
         if _is_job_header(l): break
         if BULLET_PREFIX_RE.match(l): break
-        buf.append(l); i+=1
+        buf.append(strip_md_decor(l)); i+=1
     return (unescape(" ".join(buf).strip()), i)
 
 def parse_markdown(md: str, raw_first_line: Optional[str]=None) -> Dict[str,Any]:
@@ -287,7 +297,7 @@ def parse_markdown(md: str, raw_first_line: Optional[str]=None) -> Dict[str,Any]
             i=i2; continue
 
         if current_section in ("key_skills","business_skills","technology_skills","industry_experience"):
-            low = line.lower().strip(": ")
+            low = strip_md_decor(line).lower().strip(": ")
             if low in ("business skills","technology skills","industry experience"):
                 current_section = normalize_heading(low); i+=1; continue
             if BULLET_PREFIX_RE.match(line):
@@ -304,11 +314,11 @@ def parse_markdown(md: str, raw_first_line: Optional[str]=None) -> Dict[str,Any]
             if i2==i: i+=1; continue
             if text:
                 if current_section=="clients":
-                    out["clients"].extend([unescape(c.strip()) for c in text.split(",") if c.strip()])
+                    out["clients"].extend([unescape(c.strip()) for c in strip_md_decor(text).split(",") if c.strip()])
                 elif current_section=="languages":
-                    out["languages"].extend([unescape(w.strip()) for w in text.split(",") if w.strip()])
+                    out["languages"].extend([unescape(w.strip()) for w in strip_md_decor(text).split(",") if w.strip()])
                 else:
-                    out[current_section].append(unescape(text))
+                    out[current_section].append(unescape(strip_md_decor(text)))
             i=i2; continue
 
         if current_section=="experience":
@@ -346,7 +356,7 @@ LOOSE_HEADER_PATTERNS = [
 ]
 
 def detect_job_with_trailing(line: str) -> Tuple[Optional[Dict[str,str]], Optional[str]]:
-    s = line.strip()
+    s = strip_md_decor(line)
     for pat in LOOSE_HEADER_PATTERNS:
         m = pat.match(s)
         if m:
@@ -378,13 +388,15 @@ def parse_experience_from_md(md_text: str) -> List[Dict[str, Any]]:
             t = lines[i].strip()
             if not t: i += 1; continue
             t_nb = BULLET_PREFIX_RE.sub("", t).strip()
+            # stop only at next job header or a real (non-experience) section heading
             if detect_job_with_trailing(t)[0] or detect_job_with_trailing(t_nb)[0]: break
-            if ("," not in t and "(" not in t and ")" not in t and len(t) <= 60 and not BULLET_PREFIX_RE.match(t)): break
+            low = strip_md_decor(t).lower().strip(": ")
+            if low in SECTION_ALIASES and SECTION_ALIASES[low] != "experience": break
             if BULLET_PREFIX_RE.match(t):
                 item = BULLET_PREFIX_RE.sub("", t).strip(" -–—")
                 if item: job["achievements"].append(item if item.endswith(".") else item + ".")
             else:
-                parts = [x.strip() for x in re.split(r"\.\s+", t) if x.strip()]
+                parts = [x.strip() for x in re.split(r"\.\s+", strip_md_decor(t)) if x.strip()]
                 for x in parts:
                     job["achievements"].append(x if x.endswith(".") else x + ".")
             i += 1
@@ -433,7 +445,7 @@ def find_sections(raw_text: str) -> Dict[str, Tuple[int,int]]:
     lines = [ln.rstrip() for ln in raw_text.splitlines()]
     indices: List[Tuple[int,str]] = []
     for i, ln in enumerate(lines):
-        low = ln.lower().strip(": ").strip()
+        low = strip_md_decor(ln).lower().strip(": ").strip()
         if low in SECTION_ALIASES:
             indices.append((i, SECTION_ALIASES[low]))
     sections: Dict[str, Tuple[int,int]] = {}
