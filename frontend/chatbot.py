@@ -1,10 +1,25 @@
 # chatbot.py
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
 
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+load_dotenv(find_dotenv(), override=False)
+# Try env var first, then (optionally) Streamlit secrets
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    try:
+        import streamlit as st
+        api_key = st.secrets.get("OPENAI_API_KEY")
+    except Exception:
+        pass
+
+if not api_key:
+    raise RuntimeError(
+        "OPENAI_API_KEY not found. Create a .env in the repo root or frontend/ "
+        "with OPENAI_API_KEY=sk-..., or set it in Streamlit secrets."
+    )
+
+client = OpenAI(api_key=api_key)
 
 SYSTEM_PROMPT = """
 You are Deloitte Skills Finder, an internal AI assistant designed to help managers quickly and accurately find the best-suited employees for projects by using the latest One-Pager documents.
