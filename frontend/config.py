@@ -31,11 +31,6 @@ STREAMLIT_CONFIG = {
 #     "Llama-2"
 # ]
 
-# # API settings (for future integration)
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-# ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-# DEFAULT_MODEL = "GPT-3.5"
-
 # Chat settings
 MAX_CHAT_HISTORY = 100
 MAX_MESSAGE_LENGTH = 4000
