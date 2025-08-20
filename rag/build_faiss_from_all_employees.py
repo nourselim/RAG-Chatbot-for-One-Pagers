@@ -174,14 +174,14 @@ def build_faiss_from_all_employees(in_json: Path, out_dir: Path, embed_model: st
     return vs
 
 
-def quick_demo(vs: FAISS, query: str, k: int = 5):
-    retriever = vs.as_retriever(search_type="mmr", search_kwargs={"k": k, "fetch_k": 25})
-    results = retriever.get_relevant_documents(query)
-    print("\nTop results:")
-    for i, d in enumerate(results, 1):
-        nm = d.metadata.get("name"); tp = d.metadata.get("type")
-        prev = d.page_content[:140].replace("\n", " ")
-        print(f"{i}. {nm or 'Unknown'} | {tp} | {prev}...")
+# def quick_demo(vs: FAISS, query: str, k: int = 5):
+#     retriever = vs.as_retriever(search_type="mmr", search_kwargs={"k": k, "fetch_k": 25})
+#     results = retriever.get_relevant_documents(query)
+#     print("\nTop results:")
+#     for i, d in enumerate(results, 1):
+#         nm = d.metadata.get("name"); tp = d.metadata.get("type")
+#         prev = d.page_content[:140].replace("\n", " ")
+#         print(f"{i}. {nm or 'Unknown'} | {tp} | {prev}...")
 
 
 # ----------------------------- CLI ------------------------
