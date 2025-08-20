@@ -1,335 +1,776 @@
 [
   {
-    "name": "Daniel Ebeid",
-    "title": "Backend Engineer",
+    "name": "Yara Hassan",
+    "title": "Data Scientist",
     "contact": {
-      "email": "debeid@deloitte.com",
-      "current_role": "Analyst"
+      "email": "yhassan@deloitte.com",
+      "current_role": "Senior Analyst"
     },
-    "summary": "Cloud and DevOps engineer with 5+ years of experience in building, automating, and scaling infrastructure for high-availability systems. Proven expertise in designing CI/CD pipelines, container orchestration, and cloud-native applications across AWS, Azure, and GCP. Skilled in improving developer productivity, reducing deployment times, and enhancing system reliability through automation and monitoring solutions.",
+    "summary": "Data scientist with 6+ years of experience in machine learning, statistical modeling, and predictive analytics. Specialized in building AI solutions for healthcare and financial services. Proficient in Python, R, TensorFlow, and cloud-based ML deployment.",
     "key_skills": {
       "business": [
-        "Stakeholder Engagement",
-        "Agile & Scrum"
+        "Data-Driven Decision Making",
+        "Stakeholder Presentation",
+        "Agile Methodology"
       ],
       "technology": [
-        "Cloud: AWS, Azure, GCP",
-        "DevOps: Docker, Kubernetes, Terraform, Ansible",
-        "Programming: Python, Go"
+        "Python: Pandas, NumPy, Scikit-learn",
+        "Machine Learning: TensorFlow, PyTorch",
+        "Big Data: Spark, Hadoop",
+        "Cloud: AWS SageMaker, Azure ML"
       ],
       "industry": [
-        "Project Planning & Execution",
-        "E-commerce",
-        "FinTech",
-        "Logistics & Supply Chain"
+        "Healthcare Analytics",
+        "Financial Risk Modeling",
+        "Predictive Maintenance"
       ]
     },
     "education": [
-      "Bachelor’s degree in Computer Engineering, Ain Shams University"
+      "MSc in Data Science, American University in Cairo",
+      "BSc in Statistics, Cairo University"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "French"
+    ],
+    "certifications": [
+      "AWS Certified Machine Learning Specialist",
+      "Google Cloud Professional Data Engineer"
+    ],
+    "experience": [
+      {
+        "role": "Lead Data Scientist",
+        "company": "HealthTech Analytics",
+        "duration": "Mar 2022 – Present",
+        "achievements": [
+          "Developed predictive models for patient readmission risk, reducing costs by 18%",
+          "Built real-time fraud detection system for healthcare claims",
+          "Led team of 5 data scientists on ML projects"
+        ]
+      }
+    ],
+    "clients": [
+      "Ministry of Health",
+      "Cairo Medical Center",
+      "National Bank of Egypt"
+    ]
+  },
+  {
+    "name": "Omar Khalil",
+    "title": "Cloud Architect",
+    "contact": {
+      "email": "okhalil@deloitte.com",
+      "current_role": "Manager"
+    },
+    "summary": "Cloud architect with 8+ years of experience designing and implementing scalable cloud infrastructure on AWS, Azure, and GCP. Specialized in multi-cloud strategies, security compliance, and cost optimization.",
+    "key_skills": {
+      "business": [
+        "Cloud Strategy",
+        "Cost Optimization",
+        "Security Compliance"
+      ],
+      "technology": [
+        "AWS: EC2, S3, Lambda, RDS",
+        "Azure: VMs, Blob Storage, Functions",
+        "GCP: Compute Engine, Cloud Storage",
+        "Infrastructure as Code: Terraform, CloudFormation"
+      ],
+      "industry": [
+        "Financial Services",
+        "Government",
+        "E-commerce"
+      ]
+    },
+    "education": [
+      "BSc in Computer Engineering, Alexandria University"
     ],
     "languages": [
       "Arabic",
       "English"
     ],
     "certifications": [
-      "AWS Certified Solutions Architect – Associate",
-      "Microsoft Certified: Azure Administrator",
-      "Kubernetes Certified Administrator (CKA)"
+      "AWS Certified Solutions Architect Professional",
+      "Microsoft Certified: Azure Solutions Architect Expert",
+      "Google Cloud Professional Cloud Architect"
     ],
     "experience": [
       {
-        "role": "DevOps Engineer",
-        "company": "CloudSphere Solutions",
-        "duration": "Apr 2023 – Present",
+        "role": "Cloud Solutions Architect",
+        "company": "CloudNova Technologies",
+        "duration": "Jan 2021 – Present",
         "achievements": [
-          "Built and optimized multi-cloud infrastructure (AWS + Azure) for enterprise clients.",
-          "Automated deployments with Terraform and Ansible, cutting manual effort by 60%.",
-          "Designed monitoring dashboards using Prometheus and Grafana.",
-          "Implemented CI/CD pipelines with GitHub Actions, reducing release cycle from 2 weeks to 3 days."
+          "Designed multi-cloud architecture for Fortune 500 client, reducing costs by 35%",
+          "Led migration of 200+ servers from on-premise to cloud",
+          "Implemented security framework compliant with ISO 27001"
         ]
-      },
+      }
+    ],
+    "clients": [
+      "Egyptian Stock Exchange",
+      "Mobinil",
+      "Souq.com"
+    ]
+  },
+  {
+    "name": "Lina Mahmoud",
+    "title": "UX/UI Designer",
+    "contact": {
+      "email": "lmahmoud@deloitte.com",
+      "current_role": "Senior Designer"
+    },
+    "summary": "Creative UX/UI designer with 5+ years of experience creating intuitive user interfaces for web and mobile applications. Strong background in user research, prototyping, and design systems.",
+    "key_skills": {
+      "business": [
+        "User Research",
+        "Design Thinking",
+        "Client Workshops"
+      ],
+      "technology": [
+        "Figma",
+        "Adobe XD",
+        "Sketch",
+        "InVision",
+        "HTML/CSS"
+      ],
+      "industry": [
+        "FinTech",
+        "Healthcare",
+        "Education Technology"
+      ]
+    },
+    "education": [
+      "BFA in Graphic Design, German University in Cairo"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "German"
+    ],
+    "certifications": [
+      "Google UX Design Professional Certificate",
+      "NN/g UX Certification"
+    ],
+    "experience": [
       {
-        "role": "System Administrator",
-        "company": "LogiTech Transport",
-        "duration": "Sep 2018 – Dec 2020",
+        "role": "Lead UX Designer",
+        "company": "DigitalInnovate Studio",
+        "duration": "Jun 2020 – Present",
         "achievements": [
-          "Managed Linux-based servers and automated backup systems.",
-          "Introduced Docker-based containerization for internal apps.",
-          "Improved system reliability and reduced downtime by 30%."
+          "Designed mobile banking app with 4.8-star rating on app stores",
+          "Created design system used across 10+ products",
+          "Increased user conversion by 45% through UX improvements"
+        ]
+      }
+    ],
+    "clients": [
+      "QNB Alahli",
+      "Vezeeta",
+      "Noon Academy"
+    ]
+  },
+  {
+    "name": "Karim Abbas",
+    "title": "Cybersecurity Specialist",
+    "contact": {
+      "email": "kabbas@deloitte.com",
+      "current_role": "Security Analyst"
+    },
+    "summary": "Cybersecurity expert with 7+ years of experience in threat detection, vulnerability assessment, and security architecture. Certified ethical hacker with proven track record in securing enterprise systems.",
+    "key_skills": {
+      "business": [
+        "Risk Assessment",
+        "Security Auditing",
+        "Incident Response"
+      ],
+      "technology": [
+        "SIEM: Splunk, QRadar",
+        "Penetration Testing: Metasploit, Burp Suite",
+        "Network Security: Firewalls, IDS/IPS",
+        "Cloud Security: AWS Security Hub, Azure Sentinel"
+      ],
+      "industry": [
+        "Banking & Finance",
+        "Healthcare",
+        "Government"
+      ]
+    },
+    "education": [
+      "MSc in Cybersecurity, Nile University",
+      "BSc in Computer Science, Ain Shams University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "Certified Information Systems Security Professional (CISSP)",
+      "Certified Ethical Hacker (CEH)",
+      "CompTIA Security+"
+    ],
+    "experience": [
+      {
+        "role": "Security Operations Lead",
+        "company": "SecureTech Solutions",
+        "duration": "Aug 2019 – Present",
+        "achievements": [
+          "Reduced security incidents by 70% through improved monitoring",
+          "Led incident response team during major cyber attack",
+          "Implemented zero-trust architecture for enterprise network"
+        ]
+      }
+    ],
+    "clients": [
+      "Central Bank of Egypt",
+      "Egyptian Healthcare Authority",
+      "Etisalat Egypt"
+    ]
+  },
+  {
+    "name": "Nadia Fawzy",
+    "title": "Product Manager",
+    "contact": {
+      "email": "nfawzy@deloitte.com",
+      "current_role": "Product Lead"
+    },
+    "summary": "Strategic product manager with 6+ years of experience leading cross-functional teams to deliver successful digital products. Strong background in agile methodologies, market analysis, and product strategy.",
+    "key_skills": {
+      "business": [
+        "Product Strategy",
+        "Roadmap Planning",
+        "Stakeholder Management"
+      ],
+      "technology": [
+        "JIRA",
+        "Confluence",
+        "Product Analytics: Mixpanel, Amplitude",
+        "A/B Testing"
+      ],
+      "industry": [
+        "SaaS",
+        "E-commerce",
+        "Mobile Applications"
+      ]
+    },
+    "education": [
+      "MBA, American University in Cairo",
+      "BSc in Computer Science, Cairo University"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "Spanish"
+    ],
+    "certifications": [
+      "Pragmatic Marketing Certified",
+      "Agile Certified Product Manager"
+    ],
+    "experience": [
+      {
+        "role": "Senior Product Manager",
+        "company": "TechGrowth Inc.",
+        "duration": "Jan 2021 – Present",
+        "achievements": [
+          "Launched 3 successful products generating $10M+ revenue",
+          "Increased user engagement by 200% through feature optimization",
+          "Built and led product team of 15 people"
         ]
       }
     ],
     "clients": [
       "Amazon Egypt",
-      "Vodafone",
-      "Emirates Logistics"
+      "Swvl",
+      "Brimore"
     ]
   },
   {
-    "name": "Lujain Mansour",
-    "title": "Consultant",
+    "name": "Tarek Mohamed",
+    "title": "DevOps Engineer",
     "contact": {
-      "email": "debeid@deloitte.com",
-      "current_role": "T&T, EAID, Customer As a Service / Operate"
+      "email": "tmohamed@deloitte.com",
+      "current_role": "DevOps Lead"
     },
-    "summary": "I am a Frontend Engineer with over 10 years of experience building and optimizing user interfaces and web applications in Egypt. Skilled in React, TypeScript, JavaScript, and modern UI frameworks, I have delivered projects across technology, e-commerce, and service sectors. My expertise includes responsive design, performance optimization, and API integration, along with experience in DevOps practices such as CI/CD pipelines, containerization, and cloud deployments. I bring a strong ability to bridge design and engineering, ensuring seamless user experiences while maintaining scalable, maintainable codebases.",
+    "summary": "DevOps engineer with 5+ years of experience in CI/CD pipeline development, infrastructure automation, and cloud-native technologies. Passionate about improving development workflows and system reliability.",
     "key_skills": {
       "business": [
-        "Project Management",
-        "Agile & Scrum",
-        "Client Communication",
-        "Stakeholder Management",
-        "Product Mindset"
+        "Process Automation",
+        "Team Collaboration",
+        "Performance Optimization"
       ],
       "technology": [
-        "React.js",
-        "TypeScript",
-        "JavaScript (ES6+)",
-        "HTML5 / CSS3 / SCSS",
-        "Next.js"
+        "Kubernetes",
+        "Docker",
+        "Jenkins",
+        "GitLab CI/CD",
+        "Terraform",
+        "Ansible"
       ],
       "industry": [
-        "Problem-Solving",
-        "Responsive Web Design",
+        "FinTech",
         "Telecommunications",
-        "E-commerce & Retail"
+        "Gaming"
       ]
     },
     "education": [
-      "Bachelor’s degree in Computer Science, GUC"
-    ],
-    "languages": [
-      "Arabic",
-      "English",
-      "German"
-    ],
-    "certifications": [
-      "AWS Certified Solutions Architect – Associate",
-      "Microsoft Certified: Azure Administrator",
-      "Kubernetes Certified Administrator (CKA)"
-    ],
-    "experience": [
-      {
-        "role": "Management Consultant",
-        "company": "Nile Advisory Group",
-        "duration": "Jan 2021 – Present",
-        "achievements": [
-          "Led corporate transformation projects for hospitality and travel clients, improving operational efficiency by 25%.",
-          "Designed and implemented PMO frameworks, aligning project delivery with corporate strategy.",
-          "Supported digital transformation initiatives, including ERP rollouts and process automation.",
-          "Delivered training workshops on supply chain management and project governance for client teams.",
-          "Developed growth strategies and restructuring plans for clients in retail, financial services, and government sectors.",
-          "Introduced data governance and BI solutions, enabling data-driven decision-making.",
-          "Conducted organizational assessments and designed operating models to improve productivity.",
-          "Supported IPO readiness projects by preparing governance and compliance frameworks.)"
-        ]
-      }
-    ],
-    "clients": [
-      "Vodafone",
-      "Emaar Misr",
-      "Travelstart Egypt",
-      "El Araby Group",
-      "Lujain Mansour",
-      "Frontend Engineer"
-    ]
-  },
-  {
-    "name": "Nour Selim",
-    "title": "Backend Engineer",
-    "contact": {
-      "email": "nselim@deloitte.com",
-      "current_role": "Analyst"
-    },
-    "summary": "Experienced backend engineer with 4+ years of success designing and delivering fast, scalable, and reliable applications using Java (Spring Boot), Python, JavaScript, and PostgreSQL. Proven track record in leading backend architecture for AI-powered platforms and multi-tenant SaaS systems. Skilled in building robust APIs, implementing automation, and optimizing deployment workflows with Docker, Kubernetes, and GitLab CI/CD.",
-    "key_skills": {
-      "business": [
-        "Agile Methodology",
-        "Stakeholder communication",
-        "Collaboration & Teamwork"
-      ],
-      "technology": [
-        "Java (Spring Boot, Hibernate, JPA, Selenium)",
-        "Python (Flask)",
-        "JavaScript, NodeJS, Next.js",
-        "SQL, Oracle, NoSQL",
-        "GIT",
-        "Docker, Kubernetes",
-        "AWS"
-      ],
-      "industry": [
-        "Junit, Mockito",
-        "Procurement",
-        "Telecommunications",
-        "Digital Transformation",
-        "Governmental"
-      ]
-    },
-    "education": [
-      "Bachelor's degree, Computer Science, Misr International University in Egypt"
+      "BSc in Computer Engineering, Mansoura University"
     ],
     "languages": [
       "Arabic",
       "English"
     ],
     "certifications": [
-      "Core Model Developer - Hyperexponential",
-      "Generative AI Associate Engineer - Databricks"
+      "Kubernetes Certified Administrator (CKA)",
+      "AWS Certified DevOps Engineer Professional"
     ],
     "experience": [
       {
-        "role": "Senior Backend Engineer",
-        "company": "Deloitte Innovation Hub – Procurement AIaaS",
-        "duration": "Mar 2025 – Present",
+        "role": "DevOps Team Lead",
+        "company": "CloudNative Labs",
+        "duration": "Mar 2020 – Present",
         "achievements": [
-          "Led backend development for scalable procurement platform.",
-          "Designed & implemented full stack with Node.js and Next.js.",
-          "Built secure, isolated data access, improved readiness through logging, monitoring, and QA.",
-          "Developed backend utilities and boosted engineering efficiency."
-        ]
-      },
-      {
-        "role": "Senior Backend Engineer",
-        "company": "Deloitte Innovation Hub – Agentic Workforce Transformation",
-        "duration": "Jan 2025 – Mar 2025",
-        "achievements": [
-          "Developed AI-powered workforce solutions.",
-          "Built pilots using Python & Node.js, deployed on GCP.",
-          "Co-created playbook, guided tool adoption, and delivered pilot demonstrating applied AI."
-        ]
-      },
-      {
-        "role": "Software Engineer",
-        "company": "Orange Business",
-        "duration": "Jan 2023 – Oct 2024",
-        "achievements": [
-          "Designed & maintained scalable systems.",
-          "Used Docker, Kubernetes, and GitLab CI/CD for deployments.",
-          "Developed automation testing frameworks and built data admin portal."
+          "Reduced deployment time from 4 hours to 15 minutes",
+          "Implemented GitOps workflow for 50+ microservices",
+          "Achieved 99.99% system uptime for critical applications"
         ]
       }
     ],
     "clients": [
-      "Roche",
-      "Sanofi",
-      "Orange Business",
-      "Administrative Control Authority (Egypt)"
+      "Fawry",
+      "Orange Egypt",
+      "Tamatem Games"
     ]
   },
   {
-    "name": "Sama Doghish",
-    "title": "Backend Engineer",
+    "name": "Sara Ibrahim",
+    "title": "Frontend Developer",
     "contact": {
-      "email": "sdogh@deloitte.com",
-      "current_role": "Manager"
+      "email": "sibrahim@deloitte.com",
+      "current_role": "Senior Developer"
     },
-    "summary": "Experienced backend engineer with 4+ years of success designing and delivering fast, scalable, and reliable applications using Java (Spring Boot), Python, JavaScript, and PostgreSQL. Proven track record in leading backend architecture for AI-powered platforms and multi-tenant SaaS systems. Skilled in building robust APIs, implementing automation, and optimizing deployment workflows with Docker, Kubernetes, and GitLab CI/CD.",
+    "summary": "Frontend developer with 4+ years of experience building responsive and accessible web applications using modern JavaScript frameworks. Focus on performance optimization and user experience.",
     "key_skills": {
       "business": [
-        "Agile Methodology",
-        "Stakeholder communication",
-        "Collaboration & Teamwork"
+        "Accessibility Compliance",
+        "Code Review",
+        "Mentoring"
       ],
       "technology": [
-        "Java (Spring Boot, Hibernate, JPA, Selenium)",
-        "Python (Flask)",
-        "JavaScript, NodeJS, Next.js",
-        "SQL, Oracle, NoSQL",
-        "GIT",
-        "Docker, Kubernetes"
+        "React.js",
+        "Vue.js",
+        "TypeScript",
+        "Webpack",
+        "Jest",
+        "Cypress"
       ],
       "industry": [
-        "Junit, Mockito",
-        "FinTech",
-        "Healthcare Platforms"
+        "Education",
+        "Non-profit",
+        "Media & Entertainment"
       ]
     },
     "education": [
-      "Bachelor's degree, Computer Science, Ainshams University in Egypt"
+      "BSc in Computer Science, Helwan University"
     ],
     "languages": [
       "Arabic",
       "English",
-      "spanish"
+      "Italian"
     ],
     "certifications": [
-      "AWS Certified Solutions Architect – Associate",
-      "Microsoft Certified: Azure Developer Associate"
+      "Google Web Developer Certification",
+      "Accessibility Fundamentals"
     ],
     "experience": [
       {
-        "role": "Senior Backend Engineer",
-        "company": "TechNova Labs – Supply Chain Intelligence",
-        "duration": "Apr 2025 – Present",
+        "role": "Frontend Tech Lead",
+        "company": "WebCraft Studios",
+        "duration": "Sep 2021 – Present",
         "achievements": [
-          "Built distributed backend services for predictive supply chain analytics.",
-          "Implemented microservices with Java Spring Boot and PostgreSQL.",
-          "Set up monitoring with Prometheus & Grafana to improve system reliability.",
-          "Developed APIs enabling seamless integration with third-party platforms."
-        ]
-      },
-      {
-        "role": "Backend Engineer",
-        "company": "CloudSphere – AI Automation Platform",
-        "duration": "Jan 2024 – Mar 2025",
-        "achievements": [
-          "Designed backend modules for an AI-driven automation suite.",
-          "Worked with Python FastAPI and Node.js for hybrid service development.",
-          "Deployed applications on AWS using Docker & ECS.",
-          "Partnered with data science teams to productionize ML workflows."
-        ]
-      },
-      {
-        "role": "Software Engineer",
-        "company": "BrightEdge Solutions",
-        "duration": "Feb 2022 – Dec 2023",
-        "achievements": [
-          "Contributed to development of enterprise SaaS applications.",
-          "Built CI/CD pipelines with Jenkins and GitHub Actions.",
-          "Wrote unit & integration tests to strengthen product reliability.",
-          "Collaborated with UI teams to deliver user-facing dashboards."
+          "Improved page load speed by 60% through optimization",
+          "Led migration from Angular to React for large codebase",
+          "Implemented comprehensive testing strategy"
         ]
       }
     ],
     "clients": [
-      "Roche",
-      "Sanofi",
-      "Orange Business",
-      "Administrative Control Authority (Egypt)"
+      "UNICEF Egypt",
+      "Al-Ahram Newspaper",
+      "Nahdet Misr Publishing"
     ]
   },
   {
-    "name": "Seifeldin Saleh",
-    "title": "Consultant",
+    "name": "Hassan Ali",
+    "title": "AI/ML Engineer",
     "contact": {
-      "email": "debeid@deloitte.com",
-      "current_role": "T&T, EAID, Customer As a Service / Operate"
+      "email": "hali@deloitte.com",
+      "current_role": "AI Specialist"
     },
-    "summary": "I am a Backend Engineer with over 9 years of experience designing and implementing scalable server-side systems in the Middle East. Proficient in Java, Spring Boot, Node.js, and modern backend architectures, I have delivered solutions across finance, healthcare, and e-commerce sectors. My expertise spans database design, API development, and system optimization, along with hands-on experience in DevOps practices such as Docker, Kubernetes, and cloud-native deployments. I bring a proven ability to align technical implementation with business goals, ensuring robust, high-performing systems while maintaining clean, maintainable codebases.",
+    "summary": "Machine learning engineer with 5+ years of experience developing and deploying AI solutions in production environments. Specialized in natural language processing and computer vision applications.",
     "key_skills": {
       "business": [
-        "Project Management",
-        "Agile & Scrum",
-        "Client Communication",
-        "Stakeholder Management",
-        "Product Mindset"
+        "MLOps",
+        "Model Deployment",
+        "Technical Leadership"
       ],
       "technology": [
-        "React.js",
-        "TypeScript",
-        "JavaScript (ES6+)",
-        "HTML5 / CSS3 / SCSS",
-        "Next.js"
+        "Python: TensorFlow, PyTorch",
+        "NLP: Transformers, BERT, GPT",
+        "Computer Vision: OpenCV, YOLO",
+        "Cloud: AWS SageMaker, GCP AI Platform"
       ],
       "industry": [
-        "Problem-Solving",
-        "Responsive Web Design",
-        "Telecommunications",
-        "E-commerce & Retail"
+        "Retail",
+        "Manufacturing",
+        "Media"
       ]
     },
     "education": [
-      "Bachelor’s degree in Computer Science, GUC"
+      "MSc in Artificial Intelligence, Zewail City",
+      "BSc in Computer Engineering, Cairo University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "TensorFlow Developer Certificate",
+      "AWS Certified Machine Learning Specialty"
+    ],
+    "experience": [
+      {
+        "role": "AI Solutions Architect",
+        "company": "IntelliTech AI",
+        "duration": "Jan 2022 – Present",
+        "achievements": [
+          "Developed AI-powered recommendation engine increasing sales by 25%",
+          "Built real-time object detection system for manufacturing quality control",
+          "Created NLP pipeline for Arabic text processing"
+        ]
+      }
+    ],
+    "clients": [
+      "Carrefour Egypt",
+      "Samsung Electronics",
+      "MBC Group"
+    ]
+  },
+  {
+    "name": "Mona Sabry",
+    "title": "QA Automation Engineer",
+    "contact": {
+      "email": "msabry@deloitte.com",
+      "current_role": "QA Lead"
+    },
+    "summary": "Quality assurance engineer with 6+ years of experience in test automation, performance testing, and quality assurance processes. Expert in building robust testing frameworks for web and mobile applications.",
+    "key_skills": {
+      "business": [
+        "Quality Assurance",
+        "Process Improvement",
+        "Team Leadership"
+      ],
+      "technology": [
+        "Selenium",
+        "Cypress",
+        "Appium",
+        "JMeter",
+        "Postman",
+        "TestRail"
+      ],
+      "industry": [
+        "Banking",
+        "Insurance",
+        "Real Estate"
+      ]
+    },
+    "education": [
+      "BSc in Computer Science, Benha University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "ISTQB Certified Tester",
+      "Selenium WebDriver Certification"
+    ],
+    "experience": [
+      {
+        "role": "QA Automation Lead",
+        "company": "QualityTech Solutions",
+        "duration": "May 2019 – Present",
+        "achievements": [
+          "Reduced regression testing time from 3 days to 4 hours",
+          "Increased test coverage from 40% to 95%",
+          "Prevented 200+ production bugs through comprehensive testing"
+        ]
+      }
+    ],
+    "clients": [
+      "Commercial International Bank",
+      "Allianz Egypt",
+      "Palm Hills Developments"
+    ]
+  },
+  {
+    "name": "Amr Zaki",
+    "title": "Blockchain Developer",
+    "contact": {
+      "email": "azaki@deloitte.com",
+      "current_role": "Blockchain Specialist"
+    },
+    "summary": "Blockchain developer with 4+ years of experience in smart contract development, decentralized applications, and blockchain infrastructure. Worked on various blockchain platforms including Ethereum and Hyperledger.",
+    "key_skills": {
+      "business": [
+        "Tokenomics",
+        "DeFi Strategies",
+        "Blockchain Governance"
+      ],
+      "technology": [
+        "Solidity",
+        "Web3.js",
+        "Ethereum",
+        "Hyperledger Fabric",
+        "IPFS",
+        "Truffle Suite"
+      ],
+      "industry": [
+        "Cryptocurrency",
+        "Supply Chain",
+        "Digital Identity"
+      ]
+    },
+    "education": [
+      "BSc in Computer Science, Assiut University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "Certified Blockchain Developer",
+      "Ethereum Developer Certification"
+    ],
+    "experience": [
+      {
+        "role": "Senior Blockchain Developer",
+        "company": "ChainInnovate Labs",
+        "duration": "Jul 2021 – Present",
+        "achievements": [
+          "Developed NFT marketplace handling $5M+ in transactions",
+          "Built supply chain tracking system on blockchain",
+          "Created smart contracts for decentralized finance applications"
+        ]
+      }
+    ],
+    "clients": [
+      "Binance",
+      "Egyptian Customs Authority",
+      "National ID Program"
+    ]
+  },
+  {
+    "name": "Dina Samir",
+    "title": "Business Analyst",
+    "contact": {
+      "email": "dsamir@deloitte.com",
+      "current_role": "Senior BA"
+    },
+    "summary": "Business analyst with 5+ years of experience bridging the gap between business needs and technical solutions. Strong background in requirements gathering, process modeling, and stakeholder management.",
+    "key_skills": {
+      "business": [
+        "Requirements Analysis",
+        "Process Modeling",
+        "Stakeholder Engagement"
+      ],
+      "technology": [
+        "SQL",
+        "Tableau",
+        "JIRA",
+        "Confluence",
+        "Visio"
+      ],
+      "industry": [
+        "Healthcare",
+        "Insurance",
+        "Telecommunications"
+      ]
+    },
+    "education": [
+      "MBA, Arab Academy for Science and Technology",
+      "BSc in Business Administration, Cairo University"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "French"
+    ],
+    "certifications": [
+      "CBAP Certified Business Analysis Professional",
+      "PMI Professional in Business Analysis"
+    ],
+    "experience": [
+      {
+        "role": "Lead Business Analyst",
+        "company": "BusinessOptima Solutions",
+        "duration": "Mar 2020 – Present",
+        "achievements": [
+          "Reduced project rework by 40% through improved requirements",
+          "Facilitated workshops with 50+ stakeholders",
+          "Created comprehensive documentation for complex systems"
+        ]
+      }
+    ],
+    "clients": [
+      "AXA Egypt",
+      "Vodafone Egypt",
+      "Cleopatra Hospitals Group"
+    ]
+  },
+  {
+    "name": "Khaled Farag",
+    "title": "Mobile Developer",
+    "contact": {
+      "email": "kfarag@deloitte.com",
+      "current_role": "Mobile Tech Lead"
+    },
+    "summary": "Mobile developer with 6+ years of experience building native and cross-platform mobile applications. Expert in iOS and Android development with focus on performance and user experience.",
+    "key_skills": {
+      "business": [
+        "App Store Optimization",
+        "User Experience",
+        "Team Mentoring"
+      ],
+      "technology": [
+        "Swift",
+        "Kotlin",
+        "Flutter",
+        "React Native",
+        "Firebase",
+        "Fastlane"
+      ],
+      "industry": [
+        "Social Media",
+        "Fitness",
+        "Travel"
+      ]
+    },
+    "education": [
+      "BSc in Computer Science, Zagazig University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "Google Associate Android Developer",
+      "Apple iOS Developer Certification"
+    ],
+    "experience": [
+      {
+        "role": "Mobile Development Lead",
+        "company": "AppCraft Studios",
+        "duration": "Jan 2021 – Present",
+        "achievements": [
+          "Built 10+ apps with 1M+ downloads combined",
+          "Reduced app crash rate from 5% to 0.2%",
+          "Led development of award-winning fitness app"
+        ]
+      }
+    ],
+    "clients": [
+      "We Sports",
+      "EgyptAir",
+      "Elmenus"
+    ]
+  },
+  {
+    "name": "Rana Youssef",
+    "title": "Data Engineer",
+    "contact": {
+      "email": "ryoussef@deloitte.com",
+      "current_role": "Data Engineering Lead"
+    },
+    "summary": "Data engineer with 5+ years of experience building scalable data pipelines and data warehouses. Specialized in big data technologies and cloud data solutions.",
+    "key_skills": {
+      "business": [
+        "Data Governance",
+        "ETL Processes",
+        "Data Quality"
+      ],
+      "technology": [
+        "Apache Spark",
+        "Hadoop",
+        "SQL",
+        "Python",
+        "AWS Redshift",
+        "Snowflake"
+      ],
+      "industry": [
+        "E-commerce",
+        "Advertising",
+        "Logistics"
+      ]
+    },
+    "education": [
+      "MSc in Data Engineering, Cairo University",
+      "BSc in Computer Engineering, Ain Shams University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "Google Cloud Professional Data Engineer",
+      "AWS Certified Big Data Specialty"
+    ],
+    "experience": [
+      {
+        "role": "Senior Data Engineer",
+        "company": "DataFlow Technologies",
+        "duration": "Aug 2019 – Present",
+        "achievements": [
+          "Built data platform processing 1TB+ daily data",
+          "Reduced data processing time from 8 hours to 45 minutes",
+          "Implemented real-time streaming pipeline for analytics"
+        ]
+      }
+    ],
+    "clients": [
+      "Jumia Egypt",
+      "Google MENA",
+      "Aramex"
+    ]
+  },
+  {
+    "name": "Sherif Gamal",
+    "title": "Technical Project Manager",
+    "contact": {
+      "email": "sgamal@deloitte.com",
+      "current_role": "Project Director"
+    },
+    "summary": "Technical project manager with 8+ years of experience leading software development projects from inception to delivery. Strong background in agile methodologies and team leadership.",
+    "key_skills": {
+      "business": [
+        "Project Planning",
+        "Risk Management",
+        "Budget Control"
+      ],
+      "technology": [
+        "JIRA",
+        "Confluence",
+        "MS Project",
+        "Slack",
+        "Teams"
+      ],
+      "industry": [
+        "Government",
+        "Education",
+        "Non-profit"
+      ]
+    },
+    "education": [
+      "PMP Certification",
+      "BSc in Computer Engineering, German University in Cairo"
     ],
     "languages": [
       "Arabic",
@@ -337,22 +778,83 @@
       "German"
     ],
     "certifications": [
-      "AWS Certified Solutions Architect – Associate",
-      "Microsoft Certified: Azure Administrator",
-      "Kubernetes Certified Administrator (CKA)"
+      "Project Management Professional (PMP)",
+      "Certified Scrum Master (CSM)"
     ],
     "experience": [
       {
-        "role": "Management Consultant",
-        "company": "Nile Advisory Group  Drove large-scale transformation programs for hospitality and travel sector clients, delivering measurable efficiency gains of over 25%. Designed and institutionalized PMO frameworks to ensure alignment between project execution and strategic objectives. Spearheaded digital transformation initiatives, including ERP implementations and process automation, enhancing organizational agility. Facilitated executive workshops and client team trainings on supply chain optimization, governance, and performance management.",
-        "duration": "Jan 2021 – Present",
-        "achievements": []
+        "role": "Director of Project Management",
+        "company": "TechDelivery Solutions",
+        "duration": "Jan 2020 – Present",
+        "achievements": [
+          "Delivered 50+ projects on time and within budget",
+          "Managed teams of up to 30 people",
+          "Improved project success rate from 70% to 95%"
+        ]
       }
     ],
     "clients": [
-      "Vodafone—- Emaar Misr—— Travelstart Egypt——-El Araby Group",
-      "Seifeldin Saleh",
-      "Backend Engineer"
+      "Ministry of Education",
+      "World Food Programme",
+      "Save the Children"
+    ]
+  },
+  {
+    "name": "Lamis Adel",
+    "title": "Digital Marketing Specialist",
+    "contact": {
+      "email": "ladel@deloitte.com",
+      "current_role": "Marketing Manager"
+    },
+    "summary": "Digital marketing expert with 5+ years of experience in SEO, SEM, social media marketing, and analytics. Proven track record of driving growth and engagement through digital channels.",
+    "key_skills": {
+      "business": [
+        "Growth Strategy",
+        "Campaign Management",
+        "ROI Analysis"
+      ],
+      "technology": [
+        "Google Analytics",
+        "Google Ads",
+        "Facebook Ads",
+        "SEMrush",
+        "HubSpot"
+      ],
+      "industry": [
+        "Retail",
+        "Hospitality",
+        "Entertainment"
+      ]
+    },
+    "education": [
+      "MBA in Marketing, ESLSCA Business School",
+      "BSc in Mass Communication, Cairo University"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "French"
+    ],
+    "certifications": [
+      "Google Ads Certification",
+      "Facebook Blueprint Certification"
+    ],
+    "experience": [
+      {
+        "role": "Digital Marketing Manager",
+        "company": "GrowthDigital Agency",
+        "duration": "Jun 2020 – Present",
+        "achievements": [
+          "Increased website traffic by 300% through SEO",
+          "Reduced customer acquisition cost by 40%",
+          "Generated $2M+ in revenue through digital campaigns"
+        ]
+      }
+    ],
+    "clients": [
+      "Hilton Egypt",
+      "Cinema City",
+      "Alison Nelson's Chocolate Room"
     ]
   }
 ]
