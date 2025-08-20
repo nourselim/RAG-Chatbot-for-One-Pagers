@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Daniel Ebeid",
+    "title": "Backend Engineer",
+    "contact": { "email": "debeid@deloitte.com", "current_role": "Analyst" },
+    "summary": "Cloud/DevOps engineer: AWS, Kubernetes, Terraform.",
+    "key_skills": {
+      "business": ["Agile"],
+      "technology": ["AWS", "Kubernetes", "Terraform", "Docker"],
+      "industry": ["FinTech"]
+    },
+    "certifications": ["AWS Solutions Architect"],
+    "experience": [
+      {
+        "role": "DevOps Engineer",
+        "company": "CloudSphere",
+        "achievements": ["Built EKS clusters", "Automated infra with Terraform"]
+      }
+    ],
+    "clients": ["Amazon Egypt"]
+  },
+  {
+    "name": "Lujain Mansour",
+    "title": "Consultant",
+    "contact": { "email": "lmansour@deloitte.com", "current_role": "Consultant" },
+    "summary": "Frontend engineer: React/TypeScript with CI/CD experience.",
+    "key_skills": {
+      "business": ["Stakeholder Management"],
+      "technology": ["React", "TypeScript", "Next.js"],
+      "industry": ["E-commerce"]
+    },
+    "certifications": [],
+    "experience": [
+      {
+        "role": "Frontend Engineer",
+        "company": "Nile Advisory Group",
+        "achievements": ["Built React dashboards", "Improved performance 30%"]
+      }
+    ],
+    "clients": ["Vodafone"]
+  }
+]
