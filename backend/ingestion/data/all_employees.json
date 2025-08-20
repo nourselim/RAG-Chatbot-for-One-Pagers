@@ -1,0 +1,358 @@
+[
+  {
+    "name": "Daniel Ebeid",
+    "title": "Backend Engineer",
+    "contact": {
+      "email": "debeid@deloitte.com",
+      "current_role": "Analyst"
+    },
+    "summary": "Cloud and DevOps engineer with 5+ years of experience in building, automating, and scaling infrastructure for high-availability systems. Proven expertise in designing CI/CD pipelines, container orchestration, and cloud-native applications across AWS, Azure, and GCP. Skilled in improving developer productivity, reducing deployment times, and enhancing system reliability through automation and monitoring solutions.",
+    "key_skills": {
+      "business": [
+        "Stakeholder Engagement",
+        "Agile & Scrum"
+      ],
+      "technology": [
+        "Cloud: AWS, Azure, GCP",
+        "DevOps: Docker, Kubernetes, Terraform, Ansible",
+        "Programming: Python, Go"
+      ],
+      "industry": [
+        "Project Planning & Execution",
+        "E-commerce",
+        "FinTech",
+        "Logistics & Supply Chain"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Computer Engineering, Ain Shams University"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect – Associate",
+      "Microsoft Certified: Azure Administrator",
+      "Kubernetes Certified Administrator (CKA)"
+    ],
+    "experience": [
+      {
+        "role": "DevOps Engineer",
+        "company": "CloudSphere Solutions",
+        "duration": "Apr 2023 – Present",
+        "achievements": [
+          "Built and optimized multi-cloud infrastructure (AWS + Azure) for enterprise clients.",
+          "Automated deployments with Terraform and Ansible, cutting manual effort by 60%.",
+          "Designed monitoring dashboards using Prometheus and Grafana.",
+          "Implemented CI/CD pipelines with GitHub Actions, reducing release cycle from 2 weeks to 3 days."
+        ]
+      },
+      {
+        "role": "System Administrator",
+        "company": "LogiTech Transport",
+        "duration": "Sep 2018 – Dec 2020",
+        "achievements": [
+          "Managed Linux-based servers and automated backup systems.",
+          "Introduced Docker-based containerization for internal apps.",
+          "Improved system reliability and reduced downtime by 30%."
+        ]
+      }
+    ],
+    "clients": [
+      "Amazon Egypt",
+      "Vodafone",
+      "Emirates Logistics"
+    ]
+  },
+  {
+    "name": "Lujain Mansour",
+    "title": "Consultant",
+    "contact": {
+      "email": "debeid@deloitte.com",
+      "current_role": "T&T, EAID, Customer As a Service / Operate"
+    },
+    "summary": "I am a Frontend Engineer with over 10 years of experience building and optimizing user interfaces and web applications in Egypt. Skilled in React, TypeScript, JavaScript, and modern UI frameworks, I have delivered projects across technology, e-commerce, and service sectors. My expertise includes responsive design, performance optimization, and API integration, along with experience in DevOps practices such as CI/CD pipelines, containerization, and cloud deployments. I bring a strong ability to bridge design and engineering, ensuring seamless user experiences while maintaining scalable, maintainable codebases.",
+    "key_skills": {
+      "business": [
+        "Project Management",
+        "Agile & Scrum",
+        "Client Communication",
+        "Stakeholder Management",
+        "Product Mindset"
+      ],
+      "technology": [
+        "React.js",
+        "TypeScript",
+        "JavaScript (ES6+)",
+        "HTML5 / CSS3 / SCSS",
+        "Next.js"
+      ],
+      "industry": [
+        "Problem-Solving",
+        "Responsive Web Design",
+        "Telecommunications",
+        "E-commerce & Retail"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Computer Science, GUC"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "German"
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect – Associate",
+      "Microsoft Certified: Azure Administrator",
+      "Kubernetes Certified Administrator (CKA)"
+    ],
+    "experience": [
+      {
+        "role": "Management Consultant",
+        "company": "Nile Advisory Group",
+        "duration": "Jan 2021 – Present",
+        "achievements": [
+          "Led corporate transformation projects for hospitality and travel clients, improving operational efficiency by 25%.",
+          "Designed and implemented PMO frameworks, aligning project delivery with corporate strategy.",
+          "Supported digital transformation initiatives, including ERP rollouts and process automation.",
+          "Delivered training workshops on supply chain management and project governance for client teams.",
+          "Developed growth strategies and restructuring plans for clients in retail, financial services, and government sectors.",
+          "Introduced data governance and BI solutions, enabling data-driven decision-making.",
+          "Conducted organizational assessments and designed operating models to improve productivity.",
+          "Supported IPO readiness projects by preparing governance and compliance frameworks.)"
+        ]
+      }
+    ],
+    "clients": [
+      "Vodafone",
+      "Emaar Misr",
+      "Travelstart Egypt",
+      "El Araby Group",
+      "Lujain Mansour",
+      "Frontend Engineer"
+    ]
+  },
+  {
+    "name": "Nour Selim",
+    "title": "Backend Engineer",
+    "contact": {
+      "email": "nselim@deloitte.com",
+      "current_role": "Analyst"
+    },
+    "summary": "Experienced backend engineer with 4+ years of success designing and delivering fast, scalable, and reliable applications using Java (Spring Boot), Python, JavaScript, and PostgreSQL. Proven track record in leading backend architecture for AI-powered platforms and multi-tenant SaaS systems. Skilled in building robust APIs, implementing automation, and optimizing deployment workflows with Docker, Kubernetes, and GitLab CI/CD.",
+    "key_skills": {
+      "business": [
+        "Agile Methodology",
+        "Stakeholder communication",
+        "Collaboration & Teamwork"
+      ],
+      "technology": [
+        "Java (Spring Boot, Hibernate, JPA, Selenium)",
+        "Python (Flask)",
+        "JavaScript, NodeJS, Next.js",
+        "SQL, Oracle, NoSQL",
+        "GIT",
+        "Docker, Kubernetes",
+        "AWS"
+      ],
+      "industry": [
+        "Junit, Mockito",
+        "Procurement",
+        "Telecommunications",
+        "Digital Transformation",
+        "Governmental"
+      ]
+    },
+    "education": [
+      "Bachelor's degree, Computer Science, Misr International University in Egypt"
+    ],
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "certifications": [
+      "Core Model Developer - Hyperexponential",
+      "Generative AI Associate Engineer - Databricks"
+    ],
+    "experience": [
+      {
+        "role": "Senior Backend Engineer",
+        "company": "Deloitte Innovation Hub – Procurement AIaaS",
+        "duration": "Mar 2025 – Present",
+        "achievements": [
+          "Led backend development for scalable procurement platform.",
+          "Designed & implemented full stack with Node.js and Next.js.",
+          "Built secure, isolated data access, improved readiness through logging, monitoring, and QA.",
+          "Developed backend utilities and boosted engineering efficiency."
+        ]
+      },
+      {
+        "role": "Senior Backend Engineer",
+        "company": "Deloitte Innovation Hub – Agentic Workforce Transformation",
+        "duration": "Jan 2025 – Mar 2025",
+        "achievements": [
+          "Developed AI-powered workforce solutions.",
+          "Built pilots using Python & Node.js, deployed on GCP.",
+          "Co-created playbook, guided tool adoption, and delivered pilot demonstrating applied AI."
+        ]
+      },
+      {
+        "role": "Software Engineer",
+        "company": "Orange Business",
+        "duration": "Jan 2023 – Oct 2024",
+        "achievements": [
+          "Designed & maintained scalable systems.",
+          "Used Docker, Kubernetes, and GitLab CI/CD for deployments.",
+          "Developed automation testing frameworks and built data admin portal."
+        ]
+      }
+    ],
+    "clients": [
+      "Roche",
+      "Sanofi",
+      "Orange Business",
+      "Administrative Control Authority (Egypt)"
+    ]
+  },
+  {
+    "name": "Sama Doghish",
+    "title": "Backend Engineer",
+    "contact": {
+      "email": "sdogh@deloitte.com",
+      "current_role": "Manager"
+    },
+    "summary": "Experienced backend engineer with 4+ years of success designing and delivering fast, scalable, and reliable applications using Java (Spring Boot), Python, JavaScript, and PostgreSQL. Proven track record in leading backend architecture for AI-powered platforms and multi-tenant SaaS systems. Skilled in building robust APIs, implementing automation, and optimizing deployment workflows with Docker, Kubernetes, and GitLab CI/CD.",
+    "key_skills": {
+      "business": [
+        "Agile Methodology",
+        "Stakeholder communication",
+        "Collaboration & Teamwork"
+      ],
+      "technology": [
+        "Java (Spring Boot, Hibernate, JPA, Selenium)",
+        "Python (Flask)",
+        "JavaScript, NodeJS, Next.js",
+        "SQL, Oracle, NoSQL",
+        "GIT",
+        "Docker, Kubernetes"
+      ],
+      "industry": [
+        "Junit, Mockito",
+        "FinTech",
+        "Healthcare Platforms"
+      ]
+    },
+    "education": [
+      "Bachelor's degree, Computer Science, Ainshams University in Egypt"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "spanish"
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect – Associate",
+      "Microsoft Certified: Azure Developer Associate"
+    ],
+    "experience": [
+      {
+        "role": "Senior Backend Engineer",
+        "company": "TechNova Labs – Supply Chain Intelligence",
+        "duration": "Apr 2025 – Present",
+        "achievements": [
+          "Built distributed backend services for predictive supply chain analytics.",
+          "Implemented microservices with Java Spring Boot and PostgreSQL.",
+          "Set up monitoring with Prometheus & Grafana to improve system reliability.",
+          "Developed APIs enabling seamless integration with third-party platforms."
+        ]
+      },
+      {
+        "role": "Backend Engineer",
+        "company": "CloudSphere – AI Automation Platform",
+        "duration": "Jan 2024 – Mar 2025",
+        "achievements": [
+          "Designed backend modules for an AI-driven automation suite.",
+          "Worked with Python FastAPI and Node.js for hybrid service development.",
+          "Deployed applications on AWS using Docker & ECS.",
+          "Partnered with data science teams to productionize ML workflows."
+        ]
+      },
+      {
+        "role": "Software Engineer",
+        "company": "BrightEdge Solutions",
+        "duration": "Feb 2022 – Dec 2023",
+        "achievements": [
+          "Contributed to development of enterprise SaaS applications.",
+          "Built CI/CD pipelines with Jenkins and GitHub Actions.",
+          "Wrote unit & integration tests to strengthen product reliability.",
+          "Collaborated with UI teams to deliver user-facing dashboards."
+        ]
+      }
+    ],
+    "clients": [
+      "Roche",
+      "Sanofi",
+      "Orange Business",
+      "Administrative Control Authority (Egypt)"
+    ]
+  },
+  {
+    "name": "Seifeldin Saleh",
+    "title": "Consultant",
+    "contact": {
+      "email": "debeid@deloitte.com",
+      "current_role": "T&T, EAID, Customer As a Service / Operate"
+    },
+    "summary": "I am a Backend Engineer with over 9 years of experience designing and implementing scalable server-side systems in the Middle East. Proficient in Java, Spring Boot, Node.js, and modern backend architectures, I have delivered solutions across finance, healthcare, and e-commerce sectors. My expertise spans database design, API development, and system optimization, along with hands-on experience in DevOps practices such as Docker, Kubernetes, and cloud-native deployments. I bring a proven ability to align technical implementation with business goals, ensuring robust, high-performing systems while maintaining clean, maintainable codebases.",
+    "key_skills": {
+      "business": [
+        "Project Management",
+        "Agile & Scrum",
+        "Client Communication",
+        "Stakeholder Management",
+        "Product Mindset"
+      ],
+      "technology": [
+        "React.js",
+        "TypeScript",
+        "JavaScript (ES6+)",
+        "HTML5 / CSS3 / SCSS",
+        "Next.js"
+      ],
+      "industry": [
+        "Problem-Solving",
+        "Responsive Web Design",
+        "Telecommunications",
+        "E-commerce & Retail"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Computer Science, GUC"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "German"
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect – Associate",
+      "Microsoft Certified: Azure Administrator",
+      "Kubernetes Certified Administrator (CKA)"
+    ],
+    "experience": [
+      {
+        "role": "Management Consultant",
+        "company": "Nile Advisory Group  Drove large-scale transformation programs for hospitality and travel sector clients, delivering measurable efficiency gains of over 25%. Designed and institutionalized PMO frameworks to ensure alignment between project execution and strategic objectives. Spearheaded digital transformation initiatives, including ERP implementations and process automation, enhancing organizational agility. Facilitated executive workshops and client team trainings on supply chain optimization, governance, and performance management.",
+        "duration": "Jan 2021 – Present",
+        "achievements": []
+      }
+    ],
+    "clients": [
+      "Vodafone—- Emaar Misr—— Travelstart Egypt——-El Araby Group",
+      "Seifeldin Saleh",
+      "Backend Engineer"
+    ]
+  }
+]
