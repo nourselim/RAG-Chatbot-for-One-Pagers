@@ -59,7 +59,7 @@ st.markdown("""
     
     /* Chat container */
     .chat-container {
-        max-width: 900px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 20px;
     }
@@ -97,12 +97,12 @@ st.markdown("""
     
     /* Sidebar styling */
     .css-1d391kg {
-        background-color: #202123;
+        background-color: black;
     }
     
     /* Button styling */
     .stButton > button {
-        background-color: #10a37f;
+        background-color: #26890d;
         color: white;
         border: none;
         border-radius: 5px;
@@ -110,9 +110,23 @@ st.markdown("""
         font-size: 14px;
         cursor: pointer;
     }
+    /* Sidebar full container */
+    section[data-testid="stSidebar"] {
+        background-color: #000000 !important;
+    }
+
+    /* Sidebar content area */
+    section[data-testid="stSidebar"] .css-1d391kg {
+        background-color: #000000 !important;
+    }
+
+    /* Make sidebar text visible */
+    section[data-testid="stSidebar"] * {
+        color: white !important;
+    }
     
     .stButton > button:hover {
-        background-color: #0d8f6f;
+        background-color: #1f6d0b;
     }
     
     /* Scrollbar styling */
@@ -137,6 +151,15 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
+    /* Model selector styling */
+    .model-selector {
+        background-color: #202123;
+        color: white;
+        border: 1px solid #565869;
+        border-radius: 5px;
+        padding: 5px;
+    }
+            
     /* Candidate result styling */
     .candidate-result {
         background-color: #2d2d2d;
