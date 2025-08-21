@@ -1,0 +1,94 @@
+Sama Doghish
+
+Backend Engineer
+
+Sama Doghish
+
+Manager 
+
+Digital Platforms &amp; Backend Services
+
+Email: sdogh@deloitte.com
+
+- Senior Backend Engineer, TechNova Labs – Supply Chain Intelligence (Apr 2025 – Present)
+
+Built distributed backend services for predictive supply chain analytics.
+
+Implemented microservices with Java Spring Boot and PostgreSQL.
+
+Set up monitoring with Prometheus &amp; Grafana to improve system reliability.
+
+Developed APIs enabling seamless integration with third-party platforms.
+
+- Backend Engineer, CloudSphere – AI Automation Platform (Jan 2024 – Mar 2025)
+
+Designed backend modules for an AI-driven automation suite.
+
+Worked with Python FastAPI and Node.js for hybrid service development.
+
+Deployed applications on AWS using Docker &amp; ECS.
+
+Partnered with data science teams to productionize ML workflows.
+
+- Software Engineer, BrightEdge Solutions (Feb 2022 – Dec 2023)
+
+Contributed to development of enterprise SaaS applications.
+
+Built CI/CD pipelines with Jenkins and GitHub Actions.
+
+Wrote unit &amp; integration tests to strengthen product reliability.
+
+Collaborated with UI teams to deliver user-facing dashboards.
+
+Relevant Experience
+
+Summary of Professional Experience
+
+Experienced backend engineer with 4+ years of success designing and delivering fast, scalable, and reliable applications using Java (Spring Boot), Python, JavaScript, and PostgreSQL. Proven track record in leading backend architecture for AI-powered platforms and multi-tenant SaaS systems. Skilled in building robust APIs, implementing automation, and optimizing deployment workflows with Docker, Kubernetes, and GitLab CI/CD.
+
+
+Business Skills:
+1- Agile Methodology
+2- Stakeholder communication
+3- Collaboration &amp; Teamwork
+
+
+
+Technology Skills:
+1- Java (Spring Boot, Hibernate, JPA, Selenium)
+2- Python (Flask)
+3- JavaScript, NodeJS, Next.js
+4- Junit, Mockito
+5- SQL, Oracle, NoSQL
+6- GIT
+7- Docker, Kubernetes
+
+Industry Experience:
+
+
+1- FinTech
+2- Healthcare Platforms 
+3-  Education Technology (EdTech)
+
+Education:
+- Bachelor's degree, Computer Science, Ainshams University in Egypt
+
+Languages:
+1- Arabic
+2- English
+
+3-spanish
+
+Certifications
+
+AWS Certified Solutions Architect – Associate
+
+Microsoft Certified: Azure Developer Associate
+
+Key Skills	
+
+Selected Clients
+
+Roche, Sanofi, Orange Business, Administrative Control Authority (Egypt)
+
+<!-- image -->
