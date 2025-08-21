@@ -1,276 +1,55 @@
-# import streamlit as st
-# import time
-# import random
-# from datetime import datetime
-# from openai import OpenAI
-# from chatbot import chat_once
-# # Page configuration
-# st.set_page_config(
-#     page_title="DeBotte AI",
-#     page_icon="🤖",
-#     layout="wide",
-#     initial_sidebar_state="expanded"
-# )
-
-# # Custom CSS for ChatGPT-like styling
-# st.markdown("""
-# <style>
-#     /* Main container styling */
-#     .main {
-#         padding: 0;
-#     }
-    
-#     /* Chat container */
-#     .chat-container {
-#         max-width: 800px;
-#         margin: 0 auto;
-#         padding: 20px;
-#     }
-    
-#     /* Message styling */
-#     .user-message {
-#         background-color: #40414f;
-#         color: white;
-#         padding: 15px;
-#         border-radius: 10px;
-#         margin: 10px 0;
-#         margin-left: 50px;
-#         margin-right: 0;
-#     }
-    
-#     .assistant-message {
-#         background-color: #444654;
-#         color: white;
-#         padding: 15px;
-#         border-radius: 10px;
-#         margin: 10px 0;
-#         margin-right: 50px;
-#         margin-left: 0;
-#     }
-    
-#     /* Input styling */
-#     .stTextInput > div > div > input {
-#         background-color: #40414f;
-#         color: white;
-#         border: 1px solid #565869;
-#         border-radius: 10px;
-#         padding: 15px;
-#         font-size: 16px;
-#     }
-    
-#     /* Sidebar styling */
-#     .css-1d391kg {
-#         background-color: #202123;
-#     }
-    
-#     /* Button styling */
-#     .stButton > button {
-#         background-color: #10a37f;
-#         color: white;
-#         border: none;
-#         border-radius: 5px;
-#         padding: 10px 20px;
-#         font-size: 14px;
-#         cursor: pointer;
-#     }
-    
-#     .stButton > button:hover {
-#         background-color: #0d8f6f;
-#     }
-    
-#     /* Scrollbar styling */
-#     ::-webkit-scrollbar {
-#         width: 8px;
-#     }
-    
-#     ::-webkit-scrollbar-track {
-#         background: #2d2d2d;
-#     }
-    
-#     ::-webkit-scrollbar-thumb {
-#         background: #888;
-#         border-radius: 4px;
-#     }
-    
-#     /* Chat history styling */
-#     .chat-history {
-#         background-color: #202123;
-#         padding: 10px;
-#         border-radius: 5px;
-#         margin-bottom: 10px;
-#     }
-    
-#     /* Model selector styling */
-#     .model-selector {
-#         background-color: #202123;
-#         color: white;
-#         border: 1px solid #565869;
-#         border-radius: 5px;
-#         padding: 5px;
-#     }
-# </style>
-# """, unsafe_allow_html=True)
-
-# # Initialize session state
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
-# if "chat_sessions" not in st.session_state:
-#     st.session_state.chat_sessions = {}
-# if "current_session" not in st.session_state:
-#     st.session_state.current_session = "default"
-# # if "model" not in st.session_state:
-# #     st.session_state.model = "GPT-3.5"
-
-# # Sidebar
-# with st.sidebar:
-#     st.title("🤖 DeBotte AI")
-#     st.markdown("---")
-    
-#     # # Model selection
-#     # st.subheader("Model")
-#     # model = st.selectbox(
-#     #     "Choose your model:",
-#     #     ["GPT-3.5", "GPT-4", "GPT-4 Turbo", "Claude-3", "Llama-2"],
-#     #     key="model_selector"
-#     # )
-#     # st.session_state.model = model
-    
-#     # st.markdown("---")
-    
-#     # New chat button
-#     if st.button("➕ New Chat", use_container_width=True):
-#         new_session_id = f"chat_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-#         st.session_state.chat_sessions[new_session_id] = []
-#         st.session_state.current_session = new_session_id
-#         st.session_state.messages = []
-#         st.rerun()
-    
-#     st.markdown("---")
-    
-#     # Chat history
-#     st.subheader("Recent Chats")
-    
-#     # Display chat sessions
-#     for session_id in list(st.session_state.chat_sessions.keys()):
-#         if st.button(f"💬 Chat {session_id[-6:]}", key=session_id, use_container_width=True):
-#             st.session_state.current_session = session_id
-#             st.session_state.messages = st.session_state.chat_sessions[session_id]
-#             st.rerun()
-    
-#     # Clear all chats
-#     if st.button("🗑️ Clear All Chats", use_container_width=True):
-#         st.session_state.messages = []
-#         st.session_state.chat_sessions = {}
-#         st.session_state.current_session = "default"
-#         st.rerun()
-
-# # Main chat interface
-# st.markdown('<div class="chat-container">', unsafe_allow_html=True)
-
-# # Display chat messages
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.markdown(message["content"])
-
-# # Chat input
-# if prompt := st.chat_input("DeBotte AI Assistant..."):
-#     # Add user message
-#     st.session_state.messages.append({"role": "user", "content": prompt})
-    
-#     # Display user message
-#     with st.chat_message("user"):
-#         st.markdown(prompt)
-    
-#     # # Generate AI response (simulated)
-#     # with st.chat_message("assistant"):
-#     #     message_placeholder = st.empty()
-#     #     full_response = ""
-
-
-#     # Generate AI response (OpenAI) with typing effect
-#     with st.chat_message("assistant"):
-#         message_placeholder = st.empty()
-#         with st.spinner("Thinking..."):
-#             # If/when you add RAG, pass your retrieved text/JSON as context here
-#             context = ""
-#             full_response = chat_once(prompt, context=context)
-
-#         # Typing animation (word-by-word)
-#         partial = ""
-#         for token in full_response.split():
-#             partial = (partial + " " + token).strip()
-#             message_placeholder.markdown(partial + "▌")
-#             time.sleep(0.015)
-#         message_placeholder.markdown(partial)
-
-#     # Add assistant message to history
-#     st.session_state.messages.append({"role": "assistant", "content": full_response})
-    
-#     # Update current session
-#     if st.session_state.current_session not in st.session_state.chat_sessions:
-#         st.session_state.chat_sessions[st.session_state.current_session] = []
-#     st.session_state.chat_sessions[st.session_state.current_session] = st.session_state.messages.copy()
-
-# st.markdown('</div>', unsafe_allow_html=True)
-
-# # Footer
-# st.markdown("---")
-# st.markdown(
-#     """
-#     <div style='text-align: center; color: #888; font-size: 12px;'>
-#        DeBotte AI | Built by Innov8 with ❤️
-#     </div>
-#     """,
-#     unsafe_allow_html=True
-# )
-
 
 import streamlit as st
 import time
 from datetime import datetime
-from chatbot import chat_once
-
-# NEW: LangChain + FAISS imports
 from pathlib import Path
+import sys
+import os
+
+# Add the rag folder to the path so we can import from it
+rag_path = Path(__file__).parent.parent / "rag"
+sys.path.append(str(rag_path))
+
+from faiss_service import FaissCandidateSearch
+from embed_only import OUT_DIR, EMB_NPY, META_JSONL
+
+# Page configuration
+st.set_page_config(
+    page_title="DeBotte AI - Employee Skills Finder", 
+    page_icon="🤖", 
+    layout="wide", 
+    initial_sidebar_state="expanded"
+)
+
+# Load environment variables
 from dotenv import load_dotenv, find_dotenv
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS
-
-# Page configuration (unchanged)
-st.set_page_config(page_title="DeBotte AI", page_icon="🤖", layout="wide", initial_sidebar_state="expanded")
-
-# -------------- RAG bootstrap (NEW) --------------
 load_dotenv(find_dotenv(), override=False)
 
-FAISS_DIR = Path(__file__).parent / "faiss_store"   # built by your builder script
+# Check for OpenAI API key
+if not os.getenv("OPENAI_API_KEY"):
+    st.error("❌ OPENAI_API_KEY not found. Please set it in your .env file.")
+    st.stop()
 
+# Initialize FAISS service
 @st.cache_resource(show_spinner=False)
-def load_retriever():
-    if not (FAISS_DIR / "index.faiss").exists():
-        st.warning("FAISS index not found in frontend/faiss_store. Build it first.")
+def load_faiss_service():
+    """Load the FAISS service for candidate search."""
+    try:
+        if not (OUT_DIR / "faiss_index.bin").exists():
+            st.warning("⚠️ FAISS index not found. Please run the RAG pipeline first.")
+            st.info("💡 Run this command in the rag/ folder: `python main.py auto`")
+            return None
+        
+        service = FaissCandidateSearch(OUT_DIR)
+        service.load_index()
+        return service
+    except Exception as e:
+        st.error(f"❌ Error loading FAISS service: {str(e)}")
         return None
-    emb = OpenAIEmbeddings(model="text-embedding-3-small")
-    vs = FAISS.load_local(FAISS_DIR.as_posix(), emb, allow_dangerous_deserialization=True)
-    # MMR = better diversity, fetch more then keep top-k diverse
-    return vs.as_retriever(search_type="mmr", search_kwargs={"k": 5, "fetch_k": 30})
 
-retriever = load_retriever()
+faiss_service = load_faiss_service()
 
-def format_docs(docs, max_chars=3000):
-    """Turn retrieved docs into the context block your system prompt expects."""
-    parts, total = [], 0
-    for d in docs or []:
-        block = d.page_content.strip()
-        if not block:
-            continue
-        total += len(block) + 1
-        if total > max_chars:
-            break
-        parts.append(block)
-        parts.append("")  # blank line
-    return "\n".join(parts).strip()
-
-# ----------------- CSS (unchanged) -----------------
+# ----------------- CSS Styling -----------------
 st.markdown("""
 <style>
     /* Main container styling */
@@ -280,7 +59,7 @@ st.markdown("""
     
     /* Chat container */
     .chat-container {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
         padding: 20px;
     }
@@ -358,75 +137,195 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
-    /* Model selector styling */
-    .model-selector {
-        background-color: #202123;
-        color: white;
+    /* Candidate result styling */
+    .candidate-result {
+        background-color: #2d2d2d;
         border: 1px solid #565869;
-        border-radius: 5px;
-        padding: 5px;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .candidate-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #10a37f;
+        margin-bottom: 5px;
+    }
+    
+    .candidate-details {
+        color: #cccccc;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    
+    .candidate-text {
+        color: #ffffff;
+        font-size: 13px;
+        line-height: 1.4;
     }
 </style>
 """, unsafe_allow_html=True)
-# ----------------- State (unchanged) -----------------
-if "messages" not in st.session_state: st.session_state.messages = []
-if "chat_sessions" not in st.session_state: st.session_state.chat_sessions = {}
-if "current_session" not in st.session_state: st.session_state.current_session = "default"
 
-# ----------------- Sidebar (unchanged) -----------------
+# ----------------- State Management -----------------
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "chat_sessions" not in st.session_state:
+    st.session_state.chat_sessions = {}
+if "current_session" not in st.session_state:
+    st.session_state.current_session = "default"
+
+# ----------------- Sidebar -----------------
 with st.sidebar:
     st.title("🤖 DeBotte AI")
+    st.markdown("**Employee Skills Finder**")
     st.markdown("---")
+    
+    # New Chat Button
     if st.button("➕ New Chat", use_container_width=True):
         new_session_id = f"chat_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         st.session_state.chat_sessions[new_session_id] = []
         st.session_state.current_session = new_session_id
         st.session_state.messages = []
         st.rerun()
+    
     st.markdown("---")
+    
+    # Recent Chats
     st.subheader("Recent Chats")
     for session_id in list(st.session_state.chat_sessions.keys()):
         if st.button(f"💬 Chat {session_id[-6:]}", key=session_id, use_container_width=True):
             st.session_state.current_session = session_id
             st.session_state.messages = st.session_state.chat_sessions[session_id]
             st.rerun()
+    
+    # Clear All Chats
     if st.button("🗑️ Clear All Chats", use_container_width=True):
         st.session_state.messages = []
         st.session_state.chat_sessions = {}
         st.session_state.current_session = "default"
         st.rerun()
+    
+    st.markdown("---")
+    
+    # System Info
+    st.subheader("System Status")
+    if faiss_service:
+        st.success("✅ FAISS Index Loaded")
+        st.info(f"📊 Ready to search")
+    else:
+        st.error("❌ FAISS Index Not Available")
+        st.info("💡 Run: `cd rag && python main.py auto`")
+    
+    st.markdown("---")
+    st.markdown("**Instructions:**")
+    st.markdown("""
+    1. Ask about employee skills, experience, or certifications
+    2. Use natural language queries
+    3. Example: "Find employees with AWS certification"
+    4. Example: "Who has experience with SAP?"
+    """)
 
-# ----------------- Chat UI (unchanged) -----------------
+# ----------------- Main Chat Interface -----------------
 st.markdown('<div class="chat-container">', unsafe_allow_html=True)
+
+# Display chat messages
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        if message["role"] == "assistant" and "candidates" in message:
+            # Display candidate results
+            st.markdown(message["content"])
+            for candidate in message["candidates"]:
+                with st.container():
+                    st.markdown(f"""
+                    <div class="candidate-result">
+                        <div class="candidate-name">{candidate['name']}</div>
+                        <div class="candidate-details">
+                            {candidate.get('title', '')} {candidate.get('email', '')}
+                        </div>
+                        <div class="candidate-text">{candidate['text']}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+        else:
+            st.markdown(message["content"])
 
-# ----------------- Input & response (MODIFIED) -----------------
-if prompt := st.chat_input("DeBotte AI Assistant..."):
+# Chat input
+if prompt := st.chat_input("Ask about employee skills, experience, or certifications..."):
+    # Add user message to chat
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # Generate response
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
-        with st.spinner("Thinking..."):
-            # NEW: retrieve docs and build context
-            context = ""
-            if retriever is not None:
-                docs = retriever.get_relevant_documents(prompt)
-                context = format_docs(docs)
-            full_response = chat_once(prompt, context=context)
-
-        # typing effect (unchanged)
+        
+        if faiss_service is None:
+            response = "❌ FAISS service is not available. Please run the RAG pipeline first."
+            candidates = []
+        else:
+            with st.spinner("🔍 Searching for candidates..."):
+                try:
+                    # Search for candidates
+                    ranked_candidates = faiss_service.search(prompt, top_k=50, pool_size=5)
+                    
+                    if not ranked_candidates:
+                        response = "❌ No suitable candidates found for your query."
+                        candidates = []
+                    else:
+                        # Format the response
+                        response = f"🔍 Found {len(ranked_candidates)} candidates matching your query:\n\n"
+                        candidates = []
+                        
+                        for i, (emp_id, (final_score, cos_score, meta)) in enumerate(ranked_candidates, 1):
+                            name = meta.get("employee_name") or "Name Not Available"
+                            title = meta.get("title") or ""
+                            email = meta.get("email") or ""
+                            chunk_type = meta.get("chunk_type", "unknown").title()
+                            
+                            # Calculate confidence
+                            confidence = "High" if cos_score >= 0.60 else ("Medium" if cos_score >= 0.40 else "Low")
+                            
+                            response += f"**{i}. {name}**"
+                            if title:
+                                response += f" - {title}"
+                            if email:
+                                response += f" ({email})"
+                            response += f"\n"
+                            response += f"📊 Confidence: {confidence} ({cos_score:.2f})\n"
+                            response += f"📝 Source: {chunk_type}\n\n"
+                            
+                            candidates.append({
+                                'name': name,
+                                'title': title,
+                                'email': email,
+                                'text': meta.get('text', '')[:200] + "..." if len(meta.get('text', '')) > 200 else meta.get('text', ''),
+                                'confidence': confidence,
+                                'score': cos_score
+                            })
+                        
+                        response += "💡 **Tip:** Ask follow-up questions about specific candidates or skills!"
+                        
+                except Exception as e:
+                    response = f"❌ Error during search: {str(e)}"
+                    candidates = []
+        
+        # Display response with typing effect
         partial = ""
-        for token in full_response.split():
+        for token in response.split():
             partial = (partial + " " + token).strip()
             message_placeholder.markdown(partial + "▌")
-            time.sleep(0.015)
+            time.sleep(0.01)
         message_placeholder.markdown(partial)
 
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
+    # Add assistant message to chat history
+    st.session_state.messages.append({
+        "role": "assistant", 
+        "content": response,
+        "candidates": candidates
+    })
+    
+    # Update session storage
     if st.session_state.current_session not in st.session_state.chat_sessions:
         st.session_state.chat_sessions[st.session_state.current_session] = []
     st.session_state.chat_sessions[st.session_state.current_session] = st.session_state.messages.copy()
@@ -438,7 +337,7 @@ st.markdown("---")
 st.markdown(
     """
     <div style='text-align: center; color: #888; font-size: 12px;'>
-       DeBotte AI | Built by Innov8 with ❤️
+       DeBotte AI - Employee Skills Finder | Built by Innov8 with ❤️
     </div>
     """,
     unsafe_allow_html=True
