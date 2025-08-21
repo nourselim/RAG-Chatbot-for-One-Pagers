@@ -1,10 +1,10 @@
-
 import streamlit as st
 import time
 from datetime import datetime
 from pathlib import Path
 import sys
 import os
+import re
 
 # Add the rag folder to the path so we can import from it
 rag_path = Path(__file__).parent.parent / "rag"
@@ -57,43 +57,165 @@ faiss_service = load_faiss_service()
 
 # ----------------- History-aware helpers -----------------
 def _recent_candidates_from_history(messages):
-    """Return the most recent assistant candidates list from history, if present."""
+    """Return the most recent non-empty assistant candidates list from history, if present."""
     for m in reversed(messages or []):
-        if m.get("role") == "assistant" and isinstance(m, dict) and "candidates" in m:
-            return m.get("candidates") or []
+        if (
+            isinstance(m, dict)
+            and m.get("role") == "assistant"
+            and m.get("candidates")
+            and isinstance(m.get("candidates"), list)
+            and len(m.get("candidates")) > 0
+        ):
+            return m.get("candidates")
     return []
 
+def _resolved_names_from_history(messages) -> list[str]:
+    """Return a list of names that were explicitly discussed in assistant follow-ups (most recent first)."""
+    names: list[str] = []
+    seen = set()
+    for m in reversed(messages or []):
+        if isinstance(m, dict) and m.get("role") == "assistant":
+            for nm in m.get("resolved_names", []) or []:
+                if nm and nm not in seen:
+                    seen.add(nm)
+                    names.append(nm)
+    return names
+
 def _extract_target_names_from_prompt(prompt: str, messages):
-    """Heuristic: resolve pronouns/ordinals to candidate names from last assistant response."""
-    prompt_low = (prompt or "").lower()
+    """Resolve references (names, pronouns, ordinals) to candidate names using LLM with history context.
+
+    Returns a list of zero or more names exactly as they appear in the recent candidate list.
+    Falls back to simple name substring matching if the model does not return valid names.
+    """
     recent_cands = _recent_candidates_from_history(messages)
     cand_names = [c.get("name", "").strip() for c in recent_cands if c.get("name")]
+    prompt_text = (prompt or "").strip()
 
-    referenced = []
-    # Name mentions
+    if cand_names and prompt_text:
+        sys_prompt = (
+            "You are resolving references in a chat about employees. Given the user's latest message and "
+            "the list of recently mentioned candidate names, return a comma-separated list of the names "
+            "from that list that the user is referring to (0-3 names). Consider pronouns, ordinals "
+            "(first/second/third), and phrases like 'another one'. Prefer names that have NOT been already discussed "
+            "if the user implies 'another'. Return ONLY the names that appear "
+            "in the provided list, exactly as written, comma-separated. Return empty if none."
+            "if you are not sure, ask the user to clarify"
+            "if the user is asking about a specific employee, return the name of the employee"
+            "if the user is asking about a specific skill, return the name of the skill"
+            "if the user is asking about a specific cloud platform, return the name of the cloud platform"
+            "if the user writes an incomplete question, ask the user to clarify"
+        )
+        try:
+            resp = _oa_client.chat.completions.create(
+                model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+                messages=[
+                    {"role": "system", "content": sys_prompt},
+                    {"role": "system", "content": "Candidates: " + ", ".join(cand_names)},
+                    {"role": "system", "content": "Already discussed: " + ", ".join(_resolved_names_from_history(messages))},
+                    {"role": "user", "content": prompt_text},
+                ],
+                temperature=0,
+                max_tokens=50,
+            )
+            raw = (resp.choices[0].message.content or "").strip()
+            if raw:
+                # Parse comma/line separated
+                parts = [p.strip() for p in re.split(r"[,\n]", raw) if p.strip()]
+                resolved = [p for p in parts if p in cand_names]
+                if resolved:
+                    return resolved
+        except Exception:
+            pass
+
+    # Fallback: lightweight substring token matching within recent candidates
+    out = []
+    prompt_low = prompt_text.lower()
     for nm in cand_names:
-        if nm and nm.lower() in prompt_low:
-            referenced.append(nm)
-    # Ordinals
-    ordinal_map = {
-        "first": 0, "1st": 0, "one": 0, "top": 0,
-        "second": 1, "2nd": 1, "two": 1,
-        "third": 2, "3rd": 2, "three": 2,
-    }
-    for key, idx in ordinal_map.items():
-        if key in prompt_low and 0 <= idx < len(cand_names):
-            referenced.append(cand_names[idx])
-    # Pronouns fallback
-    if not referenced and any(p in prompt_low for p in ["they", "them", "their", "him", "her", "that person", "the candidate", "this candidate"]):
-        if cand_names:
-            referenced.append(cand_names[0])
+        nm_low = nm.lower()
+        if nm_low and (nm_low in prompt_low or any(tok and len(tok) >= 3 and re.search(rf"\b{re.escape(tok)}\b", prompt_low) for tok in nm_low.split())):
+            out.append(nm)
+    # Deduplicate
+    seen = set(); deduped = []
+    for n in out:
+        if n not in seen:
+            seen.add(n); deduped.append(n)
+    if deduped:
+        return deduped
 
-    # Deduplicate, preserve order
-    seen = set(); out = []
-    for nm in referenced:
-        if nm not in seen:
-            seen.add(nm); out.append(nm)
-    return out
+    # Last resort: try resolving names against all known employees (if loaded)
+    try:
+        if faiss_service and getattr(faiss_service, "metas", None):
+            all_names = []
+            seen = set()
+            for m in faiss_service.metas:
+                nm = (m.get("employee_name") or "").strip()
+                if nm and nm.lower() not in seen:
+                    seen.add(nm.lower())
+                    all_names.append(nm)
+            if all_names:
+                sys_prompt = (
+                    "From the user's message, select 0-3 names that appear in the provided candidate list. "
+                    "Return ONLY the names exactly as written, comma-separated."
+                )
+                resp = _oa_client.chat.completions.create(
+                    model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+                    messages=[
+                        {"role": "system", "content": sys_prompt},
+                        {"role": "system", "content": "Candidates: " + ", ".join(all_names)},
+                        {"role": "user", "content": prompt_text},
+                    ],
+                    temperature=0,
+                    max_tokens=60,
+                )
+                raw = (resp.choices[0].message.content or "").strip()
+                parts = [p.strip() for p in re.split(r"[,\n]", raw) if p.strip()]
+                resolved = [p for p in parts if p in all_names]
+                # Deduplicate while preserving order
+                seen = set(); final = []
+                for n in resolved:
+                    if n not in seen:
+                        seen.add(n); final.append(n)
+                return final
+    except Exception:
+        pass
+
+    return []
+
+
+def _extract_topk_from_prompt(user_text: str) -> int | None:
+    """Ask the model to extract a desired top-K count (1..50) from the user's request.
+
+    Returns None if no explicit count is found.
+    """
+    text = (user_text or "").strip()
+    if not text:
+        return None
+    sys_prompt = (
+        "If the user requests a number of results (e.g., 'top 4 candidates'), return that integer only. "
+        "Otherwise return the word NONE. Valid range: 1..50."
+    )
+    try:
+        resp = _oa_client.chat.completions.create(
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+            messages=[
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": text},
+            ],
+            temperature=0,
+            max_tokens=4,
+        )
+        val = (resp.choices[0].message.content or "").strip().upper()
+        if val == "NONE":
+            return None
+        try:
+            k = int(re.sub(r"[^0-9]", "", val))
+            if 1 <= k <= 50:
+                return k
+        except Exception:
+            return None
+    except Exception:
+        return None
+    return None
 
 def _rewrite_query_with_history(messages, current_question: str) -> str:
     """Use OpenAI to rewrite the user's question into a standalone search query using recent history."""
@@ -155,6 +277,8 @@ def _synthesize_employee_narrative(employee_name: str, chunks: list[dict], user_
         "You are a helpful assistant. Given context snippets about an employee, answer the user's request "
         "in a friendly, concise paragraph using complete sentences. Prefer prose over bullet points. "
         "Only use facts present in the provided context. If a detail is not present, say so briefly."
+        "If the user's query is an incomplete sentence, ask for clarity."
+        "If the question is unclear, ask for clarity."
     )
     messages_payload = [
         {"role": "system", "content": sys_prompt},
@@ -192,6 +316,8 @@ def _synthesize_comparison(name_a: str, chunks_a: list[dict], name_b: str, chunk
         "You are a helpful assistant. Compare two employees strictly based on the provided contexts. "
         "Write a short, natural paragraph that answers the user's request (e.g., focus on Kubernetes if asked). "
         "Mention strengths or relevant evidence for each and note any missing information. Keep it crisp and helpful."
+        "If the user's query is an incomplete sentence, ask for clarity."
+        "If the question is unclear, ask for clarity."
     )
     messages_payload = [
         {"role": "system", "content": sys_prompt},
@@ -260,18 +386,36 @@ if "current_session" not in st.session_state:
 # ----------------- Sidebar -----------------
 with st.sidebar:
     st.title("🤖 DeBotte AI")
+
+# Just shrink the first title on the page
+    st.markdown("""
+    <style>
+    h1:first-of-type {
+      font-size: 2.rem !important;   /* try 1.75rem–2.25rem to taste */
+      line-height: 1.2 !important;
+      margin: 0 0 .5rem 0 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
     st.markdown("**Employee Skills Finder**")
-    st.markdown("---")
+    st.markdown(
+    "<div style='height:2px; background:#ffffff; margin:0.75rem 0;'></div>",
+    unsafe_allow_html=True
+)
     
     # New Chat Button
-    if st.button("➕ New Chat", use_container_width=True):
+    if st.button("New Chat", use_container_width=True):
         new_session_id = f"chat_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         st.session_state.chat_sessions[new_session_id] = []
         st.session_state.current_session = new_session_id
         st.session_state.messages = []
         st.rerun()
     
-    st.markdown("---")
+    st.markdown(
+    "<div style='height:2px; background:#ffffff; margin:0.75rem 0;'></div>",
+    unsafe_allow_html=True
+)
     
     # Recent Chats
     st.subheader("Recent Chats")
@@ -282,24 +426,30 @@ with st.sidebar:
             st.rerun()
     
     # Clear All Chats
-    if st.button("🗑️ Clear All Chats", use_container_width=True):
+    if st.button("Clear All Chats", use_container_width=True):
         st.session_state.messages = []
         st.session_state.chat_sessions = {}
         st.session_state.current_session = "default"
         st.rerun()
     
-    st.markdown("---")
+#     st.markdown(
+#     "<div style='height:2px; background:#ffffff; margin:0.75rem 0;'></div>",
+#     unsafe_allow_html=True
+# )
     
-    # System Info
-    st.subheader("System Status")
-    if faiss_service:
-        st.success("✅ FAISS Index Loaded")
-        st.info(f"📊 Ready to search")
-    else:
-        st.error("❌ FAISS Index Not Available")
-        st.info("💡 Run: `cd rag && python main.py auto`")
+    # # System Info
+    # st.subheader("System Status")
+    # if faiss_service:
+    #     st.success("✅ FAISS Index Loaded")
+    #     st.info(f"📊 Ready to search")
+    # else:
+    #     st.error("❌ FAISS Index Not Available")
+    #     st.info("💡 Run: `cd rag && python main.py auto`")
     
-    st.markdown("---")
+    st.markdown(
+    "<div style='height:2px; background:#ffffff; margin:0.75rem 0;'></div>",
+    unsafe_allow_html=True
+)
     st.markdown("**Instructions:**")
     st.markdown(
         """
@@ -313,40 +463,152 @@ with st.sidebar:
 # ----------------- Main Chat Interface -----------------
 st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 
-# Display chat messages
+# Display chat messages (render message content only; no candidate cards)
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        if message["role"] == "assistant" and "candidates" in message:
-            # Display candidate results
-            st.markdown(message["content"])
-            for candidate in message["candidates"]:
-                with st.container():
-                    st.markdown(f"""
-                    <div class="candidate-result">
-                        <div class="candidate-name">{candidate['name']}</div>
-                        <div class="candidate-details">
-                            {candidate.get('title', '')} {candidate.get('email', '')}
-                        </div>
-                        <div class="candidate-text">{candidate['text']}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-        else:
-            st.markdown(message["content"])
+        st.markdown(message["content"])
 
 # ----------------- Intent classification helpers -----------------
+def _classify_intent_llm(text: str) -> str:
+    """Use the chat model to classify the user's intent robustly (supports non-English greetings)."""
+    cleaned = (text or "").strip()
+    if not cleaned:
+        return "empty"
+
+    sys_prompt = (
+        "Classify the user's message into exactly one of these labels: "
+        "greeting, compare, followup_detail, search. "
+        "Return only the label. Use 'greeting' for salutations/small talk without an info request; "
+        "'compare' if they ask to compare two people; 'followup_detail' if they ask for more details "
+        "about a previously mentioned candidate; otherwise 'search'."
+        "If the user's query is an incomplete sentence, ask for clarity."
+        "If the question is unclear, ask for clarity."
+    )
+    try:
+        resp = _oa_client.chat.completions.create(
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+            messages=[
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": cleaned},
+            ],
+            temperature=0,
+            max_tokens=5,
+        )
+        label = (resp.choices[0].message.content or "").strip().lower()
+        if label in ("greeting", "compare", "followup_detail", "search"):
+            return label
+        return "search"
+    except Exception:
+        return "search"
+
+
 def _classify_intent(text: str) -> str:
-    t = (text or "").strip().lower()
+    t = (text or "").strip()
     if not t:
         return "empty"
-    greetings = ["hi", "hello", "hey", "good morning", "good evening", "good afternoon"]
-    if any(t.startswith(g) or t == g for g in greetings):
-        return "greeting"
-    if any(k in t for k in ["compare", "difference between", "vs "]):
-        return "compare"
-    if any(k in t for k in ["tell me more", "more about", "details about", "expand on", "elaborate", "what about the", "first one", "second one", "third one"]):
-        return "followup_detail"
-    # otherwise assume search intent
-    return "search"
+    # Delegate intent recognition fully to the model (supports multilingual and flexible phrasing)
+    return _classify_intent_llm(t)
+
+
+def _generate_greeting_response(user_text: str) -> str:
+    """Generate a short greeting in the user's language with a brief capability hint."""
+    sys_prompt = (
+        "You are a brief, friendly assistant for an employee skills finder chatbot. "
+        "Respond to the user's greeting in the same language. In one or two short sentences, "
+        "say you can help find employees by skills, experience, certifications, or clients, and give "
+        "one concise example query. Keep it under 30 words."
+        "If the user's query is an incomplete sentence, ask for clarity."
+        "If the question is unclear, ask for clarity."
+    )
+    try:
+        resp = _oa_client.chat.completions.create(
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+            messages=[
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": user_text},
+            ],
+            temperature=0.3,
+            max_tokens=80,
+        )
+        out = (resp.choices[0].message.content or "").strip()
+        if out:
+            return out
+    except Exception:
+        pass
+    return (
+        "Hello! I’m your Deloitte Skills Finder. Ask me about skills, experience, certifications, or clients "
+        "(e.g., ‘Who has Kubernetes experience?’)."
+    )
+
+
+def _generate_clarifying_question(messages, user_text: str) -> str:
+    """Ask one concise clarifying question when the reference is ambiguous.
+
+    Uses the recent candidate names to frame the question naturally and avoids hard-coded wording.
+    """
+    recent_cands = _recent_candidates_from_history(messages)
+    name_list = ", ".join([c.get("name", "") for c in recent_cands if c.get("name")])
+    sys_prompt = (
+        "You are assisting with an employee skills finder. The user's last message is ambiguous. "
+        "Ask ONE short clarifying question to identify which person or topic they mean. "
+        "If a list of recent candidate names is provided, include 2–4 of them as options in the question. "
+        "Keep it under 20 words."
+        "If the user's query is an incomplete sentence, ask for clarity."
+        "If the question is unclear, ask for clarity."
+    )
+    user_payload = f"User said: {user_text}\nRecent candidates: {name_list}" if name_list else f"User said: {user_text}"
+    try:
+        resp = _oa_client.chat.completions.create(
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+            messages=[
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": user_payload},
+            ],
+            temperature=0.2,
+            max_tokens=60,
+        )
+        q = (resp.choices[0].message.content or "").strip()
+        if q:
+            return q
+    except Exception:
+        pass
+    return "Which person do you mean?"
+
+
+def _assess_query_readiness(messages, user_text: str, rewritten_text: str) -> tuple[bool, str]:
+    """Decide if the message is clear enough to run retrieval, else produce one clarifying question.
+
+    Returns (needs_clarification, clarifying_question).
+    """
+    recent_cands = _recent_candidates_from_history(messages)
+    name_list = ", ".join([c.get("name", "") for c in recent_cands if c.get("name")])
+    sys_prompt = (
+        "You help decide if a user's message is ready for an employee search. "
+        "If the request is under-specified, unrelated to employees, or incomplete, reply with 'CLARIFY: <single short question>'. "
+        "If it's clear enough to search/compare, reply 'READY'. Use up to one short question."
+    )
+    payload = [
+        {"role": "system", "content": sys_prompt},
+        {"role": "system", "content": f"Recent candidates: {name_list}"},
+        {"role": "user", "content": f"User: {user_text}\nRewritten: {rewritten_text}"},
+    ]
+    try:
+        resp = _oa_client.chat.completions.create(
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+            messages=payload,
+            temperature=0,
+            max_tokens=60,
+        )
+        out = (resp.choices[0].message.content or "").strip()
+        low = out.lower()
+        if low.startswith("ready"):
+            return (False, "")
+        if low.startswith("clarify:"):
+            q = out.split(":", 1)[1].strip()
+            return (True, q or _generate_clarifying_question(messages, user_text))
+    except Exception:
+        pass
+    return (False, "")
 
 # Chat input
 if prompt := st.chat_input("Ask about employee skills, experience, or certifications..."):
@@ -368,12 +630,10 @@ if prompt := st.chat_input("Ask about employee skills, experience, or certificat
                     intent = _classify_intent(prompt)
                     # Greetings / smalltalk → friendly response, no retrieval
                     if intent == "greeting":
-                        response = (
-                            "Hello! I’m your Deloitte Skills Finder. Ask me about skills, experience, "
-                            "certifications, or clients. For example: ‘Who has Kubernetes experience?’"
-                        )
+                        response = _generate_greeting_response(prompt)
                         candidates = []
                     else:
+                        resolved_names_for_msg = []
                         # 1) Rewrite the query using chat history
                         rewritten = _rewrite_query_with_history(st.session_state.messages, prompt)
                         # 2) Resolve any explicit candidate references from last turn
@@ -393,8 +653,18 @@ if prompt := st.chat_input("Ask about employee skills, experience, or certificat
                             desired_types.append("clients")
 
                         # Follow-up detail → narrative for a specific candidate
-                        if intent == "followup_detail" and target_names:
-                            name = target_names[0]
+                        if intent == "followup_detail":
+                            # Prefer explicit reference; otherwise try resolving from text against FAISS metadata
+                            if target_names:
+                                name = target_names[0]
+                            else:
+                                name = faiss_service.canonical_employee_name_from_text(prompt)
+                            if not name:
+                                # Final fallback: use the most recent candidate shown previously
+                                last_names = _last_candidate_names(st.session_state.messages, limit=1)
+                                name = last_names[0] if last_names else None
+                        
+                        if intent == "followup_detail" and name:
                             # Get top chunks for this employee, then synthesize into a short paragraph
                             chunks = faiss_service.search_employee_details(name, query=rewritten, top_k=10)
                             if not chunks:
@@ -414,6 +684,10 @@ if prompt := st.chat_input("Ask about employee skills, experience, or certificat
                                         'confidence': '',
                                         'score': c.get('similarity', 0.0),
                                     })
+                                resolved_names_for_msg = [name]
+                        elif intent == "followup_detail" and not name:
+                            response = _generate_clarifying_question(st.session_state.messages, prompt)
+                            candidates = []
                         elif intent == "compare":
                             # Compare first and second candidates (or explicitly referenced) on the topic
                             names = target_names if target_names else _last_candidate_names(st.session_state.messages, limit=2)
@@ -431,29 +705,61 @@ if prompt := st.chat_input("Ask about employee skills, experience, or certificat
                                     candidates.append({'name': a, 'title': c.get('title',''), 'email': c.get('email',''), 'text': c.get('text',''), 'confidence': '', 'score': c.get('similarity',0.0)})
                                 for c in chunks_b[:2]:
                                     candidates.append({'name': b, 'title': c.get('title',''), 'email': c.get('email',''), 'text': c.get('text',''), 'confidence': '', 'score': c.get('similarity',0.0)})
+                                resolved_names_for_msg = [a, b]
                         else:
-                            # Default search intent → show ranked candidates
-                            ranked_candidates = faiss_service.search_filtered(
-                                rewritten,
-                                target_names=target_names or None,
-                                chunk_types=desired_types or None,
-                                top_k=50,
-                                pool_size=5,
-                            )
-                    
-                            if not ranked_candidates:
-                                response = "❌ No suitable candidates found for your query."
+                            # Before we search, ensure the request is clear enough
+                            need_clarify, question = _assess_query_readiness(st.session_state.messages, prompt, rewritten)
+                            if need_clarify:
+                                response = question
                                 candidates = []
                             else:
-                                response = f"🔍 Found {len(ranked_candidates)} candidates matching your query:\n\n"
+                                # Default search intent → show ranked candidates
+                                requested_k = _extract_topk_from_prompt(prompt) or 5
+                                ranked_candidates = faiss_service.search_filtered(
+                                    rewritten,
+                                    target_names=target_names or None,
+                                    chunk_types=desired_types or None,
+                                    top_k=max(50, requested_k * 10),
+                                    pool_size=requested_k,
+                                )
+                    
+                            if not ranked_candidates:
+                                # Ask an LLM-generated clarifying question instead of a generic failure
+                                response = _generate_clarifying_question(st.session_state.messages, prompt)
                                 candidates = []
+                            else:
+                                # Present a single concise header and omit confidence numbers
+                                response = f"🔍 {len(ranked_candidates)} candidates match your query:\n\n"
+                                candidates = []
+                                # Optionally generate a one-line relevance snippet using the LLM
+                                def make_snippet(name: str, text: str) -> str:
+                                    sys_prompt = (
+                                        "Given the user's query and a chunk of candidate info, "
+                                        "write ONE short line explaining why this candidate is relevant. "
+                                        "Max 18 words."
+                                        "If the user's query is an incomplete sentence, ask for clarity."
+                                        "If the question is unclear, ask for clarity."
+                                    )
+                                    try:
+                                        r = _oa_client.chat.completions.create(
+                                            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
+                                            messages=[
+                                                {"role": "system", "content": sys_prompt},
+                                                {"role": "user", "content": f"Query: {prompt}\nCandidate: {name}\nInfo: {text}"},
+                                            ],
+                                            temperature=0.3,
+                                            max_tokens=50,
+                                        )
+                                        out = (r.choices[0].message.content or "").strip()
+                                        return out
+                                    except Exception:
+                                        return ""
+
                                 for i, (emp_id, (final_score, cos_score, meta)) in enumerate(ranked_candidates, 1):
                                     name = meta.get("employee_name") or "Name Not Available"
                                     title = meta.get("title") or ""
                                     email = meta.get("email") or ""
-                                    chunk_type = meta.get("chunk_type", "unknown").title()
-
-                                    confidence = "High" if cos_score >= 0.60 else ("Medium" if cos_score >= 0.40 else "Low")
+                                    snippet = make_snippet(name, meta.get('text', ''))
 
                                     response += f"**{i}. {name}**"
                                     if title:
@@ -461,15 +767,17 @@ if prompt := st.chat_input("Ask about employee skills, experience, or certificat
                                     if email:
                                         response += f" ({email})"
                                     response += f"\n"
-                                    response += f"📊 Confidence: {confidence} ({cos_score:.2f})\n"
-                                    response += f"📝 Source: {chunk_type}\n\n"
+                                    if snippet:
+                                        response += f"{snippet}\n\n"
+                                    else:
+                                        response += "\n"
 
                                     candidates.append({
                                         'name': name,
                                         'title': title,
                                         'email': email,
                                         'text': meta.get('text', ''),
-                                        'confidence': confidence,
+                                        'confidence': '',
                                         'score': cos_score
                                     })
                         
@@ -477,20 +785,20 @@ if prompt := st.chat_input("Ask about employee skills, experience, or certificat
                     response = f"❌ Error during search: {str(e)}"
                     candidates = []
         
-        # Display response with typing effect
-        partial = ""
-        for token in response.split():
-            partial = (partial + " " + token).strip()
-            message_placeholder.markdown(partial + "▌")
-            time.sleep(0.01)
-        message_placeholder.markdown(partial)
+        # Display response once (no typing effect to prevent double-render/format glitches)
+        message_placeholder.markdown(response)
 
     # Add assistant message to chat history
-    st.session_state.messages.append({
-        "role": "assistant", 
-        "content": response,
-        "candidates": candidates
-    })
+    msg_record = {"role": "assistant", "content": response}
+    if candidates:
+        msg_record["candidates"] = candidates
+    # Attach resolved names if present in local scope
+    try:
+        if resolved_names_for_msg:
+            msg_record["resolved_names"] = resolved_names_for_msg
+    except NameError:
+        pass
+    st.session_state.messages.append(msg_record)
     
     # Update session storage
     if st.session_state.current_session not in st.session_state.chat_sessions:

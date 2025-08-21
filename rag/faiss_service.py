@@ -46,6 +46,61 @@ class FaissCandidateSearch:
         self.metas = [ujson.loads(line) for line in open(self.meta_path, 'r', encoding='utf-8')]
         print(f"Index loaded. Ready to search {self.index.ntotal} vectors.")
 
+    def canonical_employee_name_from_text(self, text: str) -> str | None:
+        """Resolve a user-provided name mention to a canonical employee name.
+
+        Uses simple token-overlap scoring so first-name only (e.g., "daniel") can match
+        a full name (e.g., "Daniel Ebeid"). Returns the best matching name if score
+        >= 0.5; otherwise None.
+        """
+        if not text:
+            return None
+        # Collect unique names from metadata
+        names = []
+        seen = set()
+        for m in self.metas or []:
+            nm = (m.get("employee_name") or "").strip()
+            if nm and nm.lower() not in seen:
+                seen.add(nm.lower())
+                names.append(nm)
+
+        def tokenize(s: str) -> set[str]:
+            # Alphanumeric lowercase tokens of length >= 3
+            out = []
+            cur = []
+            for ch in s.lower():
+                if ch.isalnum():
+                    cur.append(ch)
+                else:
+                    if cur:
+                        tok = "".join(cur)
+                        if len(tok) >= 3:
+                            out.append(tok)
+                        cur = []
+            if cur:
+                tok = "".join(cur)
+                if len(tok) >= 3:
+                    out.append(tok)
+            return set(out)
+
+        query_tokens = tokenize(text)
+        if not query_tokens:
+            return None
+
+        best_name = None
+        best_score = 0.0
+        for nm in names:
+            name_tokens = tokenize(nm)
+            if not name_tokens:
+                continue
+            inter = len(query_tokens & name_tokens)
+            score = inter / max(1, len(name_tokens))
+            if score > best_score:
+                best_score = score
+                best_name = nm
+
+        return best_name if best_score >= 0.5 else None
+
     def search(self, query: str, top_k: int = 50, pool_size: int = 5):
         """
         Searches the index for the best matching candidates.

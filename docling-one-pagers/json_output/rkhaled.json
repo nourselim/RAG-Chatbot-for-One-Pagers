@@ -1,0 +1,51 @@
+{
+  "name": "Ramy Khaled",
+  "title": "Analyst",
+  "contact": {
+    "email": "rkhaled@deloitte.com"
+  },
+  "summary": "I am a Full-Stack Engineer with over 10 years of experience designing and developing scalable web applications in Egypt. Proficient in React, TypeScript, and JavaScript for modern frontends, I also bring strong backend and DevOps expertise, including API design, CI/CD pipelines, containerization, and cloud deployments. My background spans technology, e-commerce, and service industries, where I’ve built responsive, high-performance applications that bridge design, engineering, and business goals. With a passion for creating seamless user experiences and robust architectures, I excel at delivering maintainable, production-ready solutions that drive measurable impact.",
+  "key_skills": {
+    "business": [
+      "Fullstack Project Management",
+      "Agile & Scrum Delivery",
+      "Cross-functional Team Collaboration",
+      "Stakeholder & Client Communication",
+      "Problem-Solving & Debugging"
+    ],
+    "technology": [
+      "Node.js & Express.js",
+      "TypeScript / JavaScript (ES6+)",
+      "HTML5 / CSS3 / SCSS",
+      "RESTful & GraphQL APIs",
+      "SQL & NoSQL Databases (MySQL, MongoDB)"
+    ],
+    "industry": [
+      "Telecommunications Platforms",
+      "Banking & Financial Applications",
+      "E-commerce & Retail Systems"
+    ]
+  },
+  "education": [
+    "Bachelor’s degree in Computer Engineering, GIU"
+  ],
+  "languages": [
+    "Arabic",
+    "English",
+    "German",
+    "Spanish"
+  ],
+  "certifications": [
+    "Google Cloud Professional Cloud Developer",
+    "Certified JavaScript Developer (W3C / OpenJS)",
+    "MongoDB Certified Developer"
+  ],
+  "clients": [
+    "Microsoft",
+    "Etisalat Egypt",
+    "Jumia",
+    "Palm Hills Developments Ramy Khaled Fullstack Engineer <!-- image -->"
+  ],
+  "deloitte_title": "Analyst",
+  "_debug_experience_source": "(experience from RAW)"
+}

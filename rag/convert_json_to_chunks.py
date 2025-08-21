@@ -76,7 +76,10 @@ def main():
     tot = 0
     with open(CHUNKS_OUT, "w", encoding="utf-8") as out:
         for p in profiles:
-            for ch in profile_to_chunks(p):
+            chunks = profile_to_chunks(p)
+            if not chunks:
+                continue
+            for ch in chunks:
                 out.write(json.dumps(ch, ensure_ascii=False) + "\n")
                 tot += 1
     print(f"Wrote {tot} chunks to {CHUNKS_OUT}")

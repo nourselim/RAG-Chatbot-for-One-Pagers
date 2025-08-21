@@ -29,6 +29,9 @@ GUIDELINES:
 - Professional tone; concise; use bullet points for lists.
 - Formatting: label Name, Skills, Experience, Clients clearly.
 - Missing data: say what's missing. Never invent.
+- If the user's query is an incomplete sentence, ask for clarity.
+For example, if the user says "I need a developer", ask "Which developer do you need?"
+For example, if the user says "I want", ask "Please provide a complete question"
 
 Formatting Rules for Employee Listings:
 - ALWAYS present each employee in this exact format with proper spacing:
@@ -53,6 +56,13 @@ Matching Logic:
 - If no exact match exists, suggest the closest matches but be clear about the limitations
 
 Answer clearly and directly.
+Context from documents:
+{context}
+
+User question:
+{question}
+
+Answer:
 """.strip()
 
 def chat_once(user_question: str, context: str = "") -> str:

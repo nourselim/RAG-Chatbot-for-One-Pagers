@@ -1,5 +1,65 @@
 [
   {
+    "name": "Aubrey Graham",
+    "title": "Analyst",
+    "contact": {
+      "email": "AGraham@deloitte.com"
+    },
+    "summary": "I am a Data & AI Engineer with over 9 years of experience building data-driven systems and intelligent solutions in the Middle East. Proficient in Python, SQL, and modern data platforms, I have delivered end-to-end solutions across finance, healthcare, and e-commerce sectors. My expertise spans data engineering, machine learning model development, and analytics, along with hands-on experience in cloud-native AI deployments on AWS, Azure, and GCP. I bring a proven ability to translate business needs into scalable data architectures and AI applications, ensuring high performance, reliability, and actionable insights while maintaining clean, production-ready pipelines.",
+    "key_skills": {
+      "business": [
+        "Strategic Planning & Execution",
+        "Agile & Scrum Methodologies",
+        "Client Communication",
+        "Stakeholder Engagement",
+        "Problem-Solving",
+        "Product Mindset"
+      ],
+      "technology": [
+        "Java / Spring Boot",
+        "Node.js / Express",
+        "RESTful & GraphQL API Design",
+        "SQL & NoSQL Databases",
+        "Microservices Architecture",
+        "Docker"
+      ],
+      "industry": [
+        "Digital Marketing",
+        "Banking & Financial Services",
+        "E-commerce & Retail"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Artificial Intelligence, NGU"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "Korean"
+    ],
+    "certifications": [
+      "IBM Data Science",
+      "Databricks",
+      "Google Cloud engineering"
+    ],
+    "clients": [
+      "Nile Development — Statue of Liberty — Noon — Mountain View Aubrey Graham AI Engineer <!-- image -->"
+    ],
+    "experience": [
+      {
+        "role": "AI Analyst",
+        "company": "Deloitte Innovation Hub",
+        "duration": "April 2024 – Present",
+        "achievements": [
+          "Led large-scale transformation programs for hospitality and travel clients, achieving efficiency improvements of 25%+. Developed and embedded PMO frameworks to align project delivery with strategic goals. Directed digital transformation initiatives, including ERP rollouts and process automation, improving organizational responsiveness. Conducted executive workshops and training sessions on supply chain optimization, governance, and performance management.",
+          "Relevant Experience."
+        ]
+      }
+    ],
+    "deloitte_title": "Analyst",
+    "_debug_experience_source": "(experience from MD)"
+  },
+  {
     "name": "Daniel Ebeid",
     "title": "Backend Engineer",
     "contact": {
@@ -64,6 +124,133 @@
       "Vodafone",
       "Emirates Logistics <!-- image -->"
     ],
+    "_debug_experience_source": "(experience from MD)"
+  },
+  {
+    "name": "Kirolos Mikhail",
+    "title": "Analyst",
+    "contact": {
+      "email": "Kiro@deloitte.com"
+    },
+    "summary": "Kirolos Mikhail is a driven Computer Engineering student at The American University in Cairo, set to graduate in December 2023 with a GPA of 3.6/4.0. With a robust technical skill set, he gained practical experience as a DevOps Developer and Full Stack Developer in various internships. Kirolos excels in programming languages, web technologies, machine learning, and DevOps tools. His project portfolio includes a Personalized Food Ordering Chatbot and a UDP Client-Server with load balancing. Beyond academics, he showcased leadership as the Co-Chair of the SU Technology committee and the General Manager of Human Resources in the First Year program. Fluent in Arabic and English, Kirolos is poised for impactful contributions in computer engineering.",
+    "key_skills": {
+      "business": [
+        "Strategic Planning & Execution",
+        "Agile & Scrum Methodologies",
+        "Client Communication",
+        "Stakeholder Engagement",
+        "Problem-Solving",
+        "Product Mindset"
+      ],
+      "technology": [
+        "Java / Spring Boot",
+        "Node.js / Express",
+        "RESTful & GraphQL API Design",
+        "SQL & NoSQL Databases",
+        "Microservices Architecture",
+        "Docker"
+      ],
+      "industry": [
+        "Digital Marketing",
+        "Banking & Financial Services",
+        "E-commerce & Retail"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Computer Science, AUC"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "Mandarin"
+    ],
+    "certifications": [
+      "Java Spring",
+      "GCP"
+    ],
+    "clients": [
+      "Vodafone Misr — Sodic Development — Emaar Egypt — QNB Alahli — Palm Hills Developments Kirolos Mikhail Backend Engineer <!-- image -->"
+    ],
+    "experience": [
+      {
+        "role": "Management Consultant",
+        "company": "Deloitte Innovation Hub",
+        "duration": "Jan 2024 – Present",
+        "achievements": [
+          "Led large-scale transformation programs for hospitality and travel clients, achieving efficiency improvements of 25%+. Developed and embedded PMO frameworks to align project delivery with strategic goals. Directed digital transformation initiatives, including ERP rollouts and process automation, improving organizational responsiveness. Conducted executive workshops and training sessions on supply chain optimization, governance, and performance management.",
+          "Relevant Experience."
+        ]
+      }
+    ],
+    "deloitte_title": "Analyst",
+    "_debug_experience_source": "(experience from MD)"
+  },
+  {
+    "name": "Lebron James",
+    "title": "Analyst",
+    "contact": {
+      "email": "LeJames@deloitte.com"
+    },
+    "summary": "I am a Backend Engineer with over 9 years of experience specializing in designing and delivering high-performance APIs for large-scale systems in the Middle East. Proficient in Java, Spring Boot, and Node.js, I have built secure, reliable, and well-documented APIs that power finance, healthcare, and e-commerce platforms. My expertise lies in architecting clean API contracts, optimizing request/response flows, and ensuring seamless integrations across services. With a strong foundation in database design and system performance tuning, I consistently deliver backend solutions that are scalable, maintainable, and aligned with business needs.",
+    "key_skills": {
+      "business": [
+        "Strategic Planning & Execution",
+        "Agile & Scrum Methodologies",
+        "Client Communication",
+        "Stakeholder Engagement",
+        "Problem-Solving",
+        "Product Mindset"
+      ],
+      "technology": [
+        "Java / Spring Boot",
+        "Node.js / Express",
+        "RESTful & GraphQL API Design",
+        "SQL & NoSQL Databases",
+        "Microservices Architecture",
+        "Docker"
+      ],
+      "industry": [
+        "Digital Marketing",
+        "Banking & Financial Services",
+        "E-commerce & Retail"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Computer Science, ASU"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "Dutch"
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect – Associate",
+      "Microsoft Certified: Azure Administrator",
+      "Kubernetes Certified Administrator (CKA)"
+    ],
+    "clients": [
+      "Etisalat Misr — Orascom Development — Jumia Egypt — QNB Alahli — Palm Hills Developments Lebron James Backend Engineer <!-- image -->"
+    ],
+    "experience": [
+      {
+        "role": "Management Consultant",
+        "company": "Nile Advisory Group",
+        "duration": "Jan 2021 – Present",
+        "achievements": [
+          "Led large-scale transformation programs for hospitality and travel clients, achieving efficiency improvements of 25%+. Developed and embedded PMO frameworks to align project delivery with strategic goals. Directed digital transformation initiatives, including ERP rollouts and process automation, improving organizational responsiveness. Conducted executive workshops and training sessions on supply chain optimization, governance, and performance management."
+        ]
+      },
+      {
+        "role": "Business Consultant",
+        "company": "Delta Consulting Services",
+        "duration": "Jan 2013 – Dec 2020",
+        "achievements": [
+          "Provided strategic advisory to clients in retail, financial services, and government, focusing on growth planning, restructuring, and competitive positioning. Guided organizational redesigns and market-entry strategies that strengthened client resilience and long-term performance.",
+          "Relevant Experience."
+        ]
+      }
+    ],
+    "deloitte_title": "Analyst",
     "_debug_experience_source": "(experience from MD)"
   },
   {
@@ -225,6 +412,57 @@
       "Administrative Control Authority (Egypt)"
     ],
     "_debug_experience_source": "(experience from MD)"
+  },
+  {
+    "name": "Ramy Khaled",
+    "title": "Analyst",
+    "contact": {
+      "email": "rkhaled@deloitte.com"
+    },
+    "summary": "I am a Full-Stack Engineer with over 10 years of experience designing and developing scalable web applications in Egypt. Proficient in React, TypeScript, and JavaScript for modern frontends, I also bring strong backend and DevOps expertise, including API design, CI/CD pipelines, containerization, and cloud deployments. My background spans technology, e-commerce, and service industries, where I’ve built responsive, high-performance applications that bridge design, engineering, and business goals. With a passion for creating seamless user experiences and robust architectures, I excel at delivering maintainable, production-ready solutions that drive measurable impact.",
+    "key_skills": {
+      "business": [
+        "Fullstack Project Management",
+        "Agile & Scrum Delivery",
+        "Cross-functional Team Collaboration",
+        "Stakeholder & Client Communication",
+        "Problem-Solving & Debugging"
+      ],
+      "technology": [
+        "Node.js & Express.js",
+        "TypeScript / JavaScript (ES6+)",
+        "HTML5 / CSS3 / SCSS",
+        "RESTful & GraphQL APIs",
+        "SQL & NoSQL Databases (MySQL, MongoDB)"
+      ],
+      "industry": [
+        "Telecommunications Platforms",
+        "Banking & Financial Applications",
+        "E-commerce & Retail Systems"
+      ]
+    },
+    "education": [
+      "Bachelor’s degree in Computer Engineering, GIU"
+    ],
+    "languages": [
+      "Arabic",
+      "English",
+      "German",
+      "Spanish"
+    ],
+    "certifications": [
+      "Google Cloud Professional Cloud Developer",
+      "Certified JavaScript Developer (W3C / OpenJS)",
+      "MongoDB Certified Developer"
+    ],
+    "clients": [
+      "Microsoft",
+      "Etisalat Egypt",
+      "Jumia",
+      "Palm Hills Developments Ramy Khaled Fullstack Engineer <!-- image -->"
+    ],
+    "deloitte_title": "Analyst",
+    "_debug_experience_source": "(experience from RAW)"
   },
   {
     "name": "Sama Doghish",

@@ -1,0 +1,60 @@
+{
+  "name": "Aubrey Graham",
+  "title": "Analyst",
+  "contact": {
+    "email": "AGraham@deloitte.com"
+  },
+  "summary": "I am a Data & AI Engineer with over 9 years of experience building data-driven systems and intelligent solutions in the Middle East. Proficient in Python, SQL, and modern data platforms, I have delivered end-to-end solutions across finance, healthcare, and e-commerce sectors. My expertise spans data engineering, machine learning model development, and analytics, along with hands-on experience in cloud-native AI deployments on AWS, Azure, and GCP. I bring a proven ability to translate business needs into scalable data architectures and AI applications, ensuring high performance, reliability, and actionable insights while maintaining clean, production-ready pipelines.",
+  "key_skills": {
+    "business": [
+      "Strategic Planning & Execution",
+      "Agile & Scrum Methodologies",
+      "Client Communication",
+      "Stakeholder Engagement",
+      "Problem-Solving",
+      "Product Mindset"
+    ],
+    "technology": [
+      "Java / Spring Boot",
+      "Node.js / Express",
+      "RESTful & GraphQL API Design",
+      "SQL & NoSQL Databases",
+      "Microservices Architecture",
+      "Docker"
+    ],
+    "industry": [
+      "Digital Marketing",
+      "Banking & Financial Services",
+      "E-commerce & Retail"
+    ]
+  },
+  "education": [
+    "Bachelor’s degree in Artificial Intelligence, NGU"
+  ],
+  "languages": [
+    "Arabic",
+    "English",
+    "Korean"
+  ],
+  "certifications": [
+    "IBM Data Science",
+    "Databricks",
+    "Google Cloud engineering"
+  ],
+  "clients": [
+    "Nile Development — Statue of Liberty — Noon — Mountain View Aubrey Graham AI Engineer <!-- image -->"
+  ],
+  "experience": [
+    {
+      "role": "AI Analyst",
+      "company": "Deloitte Innovation Hub",
+      "duration": "April 2024 – Present",
+      "achievements": [
+        "Led large-scale transformation programs for hospitality and travel clients, achieving efficiency improvements of 25%+. Developed and embedded PMO frameworks to align project delivery with strategic goals. Directed digital transformation initiatives, including ERP rollouts and process automation, improving organizational responsiveness. Conducted executive workshops and training sessions on supply chain optimization, governance, and performance management.",
+        "Relevant Experience."
+      ]
+    }
+  ],
+  "deloitte_title": "Analyst",
+  "_debug_experience_source": "(experience from MD)"
+}

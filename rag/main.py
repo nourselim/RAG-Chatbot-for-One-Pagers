@@ -1,6 +1,7 @@
 import argparse
 import subprocess
 import sys
+import hashlib
 from pathlib import Path
 from faiss_service import FaissCandidateSearch
 from embed_only import OUT_DIR, EMB_NPY, META_JSONL, pct_from_cos
@@ -24,27 +25,57 @@ def check_file_exists(file_path):
     """Check if a file exists and is not empty."""
     return file_path.exists() and file_path.stat().st_size > 0
 
+def _sha256_file(p: Path) -> str:
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def build_full_pipeline():
-    """Run the complete pipeline from scratch."""
-    print("🔍 Detecting missing files...")
-    
-    # Check if we need to run convert_json_to_chunks.py
-    chunks_file = Path(__file__).parent / "data" / "chunks.jsonl"
-    if not check_file_exists(chunks_file):
-        print("📦 Creating chunks from employee data...")
+    """Run the complete pipeline with change detection (no hard-coded file lists)."""
+    print("🔍 Detecting changes and required steps...")
+
+    base = Path(__file__).parent
+    chunks_file = base / "data" / "chunks.jsonl"
+    # Source of truth for employee records
+    all_employees_json = base.parent / "docling-one-pagers" / "json_output" / "all_employees.json"
+    hash_file = OUT_DIR / "source_hash.txt"
+
+    # Compute current source hash (if available)
+    current_hash = _sha256_file(all_employees_json) if all_employees_json.exists() else ""
+    previous_hash = hash_file.read_text(encoding="utf-8").strip() if hash_file.exists() else ""
+
+    # Decide whether to rebuild chunks and/or embeddings
+    need_chunks = (current_hash != previous_hash) or (not check_file_exists(chunks_file))
+    if need_chunks:
+        print("📦 Creating chunks from employee data (source changed or missing outputs)...")
         run_command("python convert_json_to_chunks.py", "Converting JSON to chunks")
-    
-    # Check if we need to run embed_only.py embed
-    if not check_file_exists(EMB_NPY) or not check_file_exists(META_JSONL):
-        print("🧠 Creating embeddings...")
+
+    need_embed = (
+        (not check_file_exists(EMB_NPY))
+        or (not check_file_exists(META_JSONL))
+        or (chunks_file.exists() and EMB_NPY.exists() and chunks_file.stat().st_mtime > EMB_NPY.stat().st_mtime)
+        or (chunks_file.exists() and META_JSONL.exists() and chunks_file.stat().st_mtime > META_JSONL.stat().st_mtime)
+    )
+    if need_embed:
+        print("🧠 Creating embeddings (new or updated chunks detected)...")
         run_command("python embed_only.py embed", "Creating embeddings")
-    
+
     # Build FAISS index
     print("🏗️ Building FAISS index...")
     search_engine = FaissCandidateSearch(OUT_DIR)
     search_engine.build_index(EMB_NPY, META_JSONL)
     print("✅ FAISS index built successfully!")
-    
+
+    # Persist current source hash to detect future updates
+    try:
+        OUT_DIR.mkdir(parents=True, exist_ok=True)
+        hash_file.write_text(current_hash, encoding="utf-8")
+    except Exception:
+        pass
+
     return search_engine
 
 def main():
