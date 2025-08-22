@@ -71,7 +71,7 @@ def chat_once(user_question: str, context: str = "") -> str:
     If you later add RAG, pass the retrieved JSON/text as `context`.
     """
     resp = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         temperature=0,  # keep deterministic for accuracy
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},

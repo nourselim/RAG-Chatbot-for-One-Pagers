@@ -5,5 +5,9 @@ OPENAI_API_KEY=your_openai_api_key_here
 # Optional: Customize embedding model
 # OPENAI_EMBEDDING_MODEL=text-embedding-3-large
 
-# Optional: Customize chat model
-# OPENAI_CHAT_MODEL=gpt-4o-mini
+# Optional: Customize chat model (recommended: gpt-4o for better reasoning)
+# OPENAI_CHAT_MODEL=gpt-4o
+
+# Note: DeBotte is designed to help find employees based on skills, experience, 
+# certifications, and work history. It cannot answer questions about personal 
+# information, company policies, or non-work related topics.

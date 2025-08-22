@@ -127,44 +127,68 @@ class FaissCandidateSearch:
         sims = distances[0] 
         retrieved_metas = [self.metas[i] for i in indices[0]]
 
-        # 3. Define boosting rules (copied from your original logic)
-        wants_cert = any(w in q for w in ["certified", "certification", "certificate"])
-        exact_phrases = [
-            "microsoft certified: azure administrator",
-            "azure administrator",
-            "aws certified solutions architect",
-            "sap s/4hana",
-        ]
-        q_terms = set(q.split())
+        # 3. Define boosting rules (improved for better accuracy)
+        q_lower = q.lower()
+        wants_cert = any(w in q_lower for w in ["certified", "certification", "certificate", "cka", "pmp", "aws", "azure"])
+        
+        # Enhanced exact phrase matching with higher bonuses
+        exact_phrases = {
+            "kubernetes": 0.25,  # High bonus for Kubernetes
+            "cka": 0.30,         # Very high bonus for CKA certification
+            "aws certified": 0.20,
+            "azure administrator": 0.20,
+            "sap s/4hana": 0.20,
+            "devops": 0.15,
+            "docker": 0.15,
+            "terraform": 0.15,
+        }
+        
+        # Query terms for coverage bonus
+        q_terms = set(q_lower.split())
 
-        # 4. Apply boosting and pool by employee
+        # 4. Apply improved boosting and pool by employee
         boosted_per_emp = {}
         per_emp_chunks = {}
 
         for sim, m in zip(sims, retrieved_metas):
             txt = (m.get("text") or "").lower()
             ctype = (m.get("chunk_type") or "").lower()
+            emp_name = (m.get("employee_name") or "").lower()
 
             score = float(sim)
 
-            # Apply bonuses
+            # Enhanced phrase bonus with dynamic scoring
             phrase_bonus = 0.0
-            for ph in exact_phrases:
-                if ph in q and ph in txt:
-                    phrase_bonus += 0.10
-                    break
+            for phrase, bonus in exact_phrases.items():
+                if phrase in q_lower and phrase in txt:
+                    phrase_bonus += bonus
+                    break  # Only apply highest matching phrase bonus
 
+            # Enhanced certification bonus
             cert_bonus = 0.0
-            if wants_cert and ctype == "certifications":
-                cert_bonus += 0.05
+            if ctype == "certifications":
+                # Higher bonus for exact certification matches
+                if any(cert in q_lower for cert in ["cka", "kubernetes", "aws", "azure", "pmp"]):
+                    cert_bonus += 0.20
+                else:
+                    cert_bonus += 0.10
+            elif ctype == "skills" and any(skill in q_lower for skill in ["kubernetes", "docker", "devops"]):
+                # Bonus for skills that match the query
+                cert_bonus += 0.15
 
+            # Enhanced coverage bonus
             cover_bonus = 0.0
             if q_terms:
                 hits = sum(1 for t in q_terms if t in txt)
                 if hits:
-                    cover_bonus += min(0.02 * hits, 0.08)
+                    cover_bonus += min(0.03 * hits, 0.12)  # Increased from 0.02 to 0.03
 
-            boosted_score = score + phrase_bonus + cert_bonus + cover_bonus
+            # Name relevance bonus (if query mentions specific names)
+            name_bonus = 0.0
+            if any(name in q_lower for name in emp_name.split()):
+                name_bonus += 0.05
+
+            boosted_score = score + phrase_bonus + cert_bonus + cover_bonus + name_bonus
 
             emp_id = m.get("profile_id") or f"unknown-{m['uuid'][-8:]}"
             per_emp_chunks.setdefault(emp_id, []).append((boosted_score, score, m))
