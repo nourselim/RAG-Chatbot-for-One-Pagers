@@ -178,31 +178,7 @@ python main.py --verbose
 - **Accuracy**: High precision with semantic understanding
 - **Scalability**: Supports thousands of employee profiles
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 
 - Built with Streamlit, LangChain, and FAISS
 - Powered by OpenAI's embedding models
-- Developed by Innov8 team
-
-## 📞 Support
-
-For questions or issues:
-1. Check the troubleshooting section
-2. Review the code comments
-3. Open an issue on GitHub
-
----
-
-**Happy Employee Hunting! 🎯**
