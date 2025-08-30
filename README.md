@@ -1,6 +1,6 @@
 # DeBotte AI - Employee Skills Finder
 
-An intelligent RAG-based chatbot that helps managers find the best-suited employees for projects by analyzing One-Pager documents.
+An intelligent RAG-based chatbot that helps managers find the best-suited employees for projects by analyzing One-Pager documents. This project was done in one week as part of The Bridge Program at Deloitte Innovation Hub. 
 
 ## 🚀 Features
 
@@ -182,3 +182,11 @@ python main.py --verbose
 
 - Built with Streamlit, LangChain, and FAISS
 - Powered by OpenAI's embedding models
+
+## Developed by:
+- Nour Selim
+- Lujain Mansour
+- Sama Doghish
+- Youssef Albert
+- Daniel Ebeid
+- Seif Saleh 
